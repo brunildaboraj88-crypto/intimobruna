@@ -74,6 +74,7 @@
       source.src = hero.dataset.src;
       source.type = "video/mp4";
       hero.appendChild(source);
+      hero.classList.add("hero-video--live"); // turns off the CSS poster drift
       hero.load();
     }
   }

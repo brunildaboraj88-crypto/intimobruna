@@ -52,12 +52,37 @@ img { max-width: 100%; height: auto; display: block; }
 
 a { color: inherit; text-decoration: none; }
 
+::selection { background: rgba(201, 162, 39, 0.28); }
+
+/* Slim gold scrollbar */
+html { scrollbar-width: thin; scrollbar-color: var(--gold) #f1efe9; }
+::-webkit-scrollbar { width: 10px; }
+::-webkit-scrollbar-track { background: #f1efe9; }
+::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 999px; border: 2px solid #f1efe9; }
+::-webkit-scrollbar-thumb:hover { background: var(--gold-dark); }
+
 h1, h2, h3, h4 { font-family: var(--serif); font-weight: 600; line-height: 1.12; }
 
 .container { width: 100%; max-width: var(--maxw); margin-inline: auto; padding-inline: var(--pad); }
 
-/* Single gold emphasis, used only in the hero (over the dark video) */
+/* Single gold emphasis, used only in the hero (over the dark video).
+   Where background-clip: text is supported, a bright band drifts across the gold. */
 .gold-text { color: var(--gold-light); }
+@supports ((-webkit-background-clip: text) or (background-clip: text)) {
+  .gold-text {
+    background: linear-gradient(100deg,
+      #e8cc7a 0%, #c9a227 32%, #fdf2c9 50%, #c9a227 68%, #e8cc7a 100%);
+    background-size: 220% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: goldSheen 7s ease-in-out infinite;
+  }
+}
+@keyframes goldSheen {
+  0%, 100% { background-position: 0% 0; }
+  50% { background-position: 100% 0; }
+}
 
 .eyebrow {
   font-size: 0.72rem;
@@ -73,6 +98,16 @@ h1, h2, h3, h4 { font-family: var(--serif); font-weight: 600; line-height: 1.12;
 .section-lead { max-width: 46ch; margin: 1rem auto 0; color: var(--ink-soft); }
 
 .section-head { text-align: center; max-width: 720px; margin: 0 auto clamp(2rem, 5vw, 3.2rem); }
+/* thin gold hairline under centered section titles only (blog headings unaffected) */
+.section-head .section-title::after {
+  content: "";
+  display: block;
+  width: 56px;
+  height: 2px;
+  border-radius: 999px;
+  background: var(--gold-grad);
+  margin: 0.95rem auto 0;
+}
 
 /* ---------- Buttons ---------- */
 .btn {
@@ -243,6 +278,13 @@ a.lang-btn { text-decoration: none; }
   object-fit: cover;
   z-index: 0;
 }
+/* While the poster is showing (script.js adds .hero-video--live once the real video
+   plays), drift it slowly so the phone hero feels alive without the 4.7 MB video */
+.hero-video:not(.hero-video--live) { animation: heroDrift 26s ease-in-out infinite alternate; }
+@keyframes heroDrift {
+  from { transform: scale(1); }
+  to { transform: scale(1.07); }
+}
 .hero-overlay {
   position: absolute; inset: 0; z-index: 1;
   background:
@@ -282,6 +324,74 @@ a.lang-btn { text-decoration: none; }
 }
 .hero-cta { display: flex; gap: 0.9rem; justify-content: center; flex-wrap: wrap; margin-top: 2rem; }
 
+/* Scroll cue: a hairline with a small dot sliding down it. The anchor itself is a
+   44x64 invisible hit area so it stays tappable. */
+.hero-scroll {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: max(1.1rem, env(safe-area-inset-bottom));
+  z-index: 2;
+  width: 44px;
+  height: 64px;
+}
+.hero-scroll::before {
+  content: "";
+  position: absolute;
+  left: 50%; top: 6px;
+  width: 1px; height: 52px;
+  margin-left: -0.5px;
+  background: linear-gradient(180deg, transparent, rgba(232, 204, 122, 0.9));
+}
+.hero-scroll::after {
+  content: "";
+  position: absolute;
+  left: 50%; top: 6px;
+  width: 5px; height: 5px;
+  margin-left: -2.5px;
+  border-radius: 50%;
+  background: var(--gold-light);
+  animation: cueSlide 2.4s ease-in-out infinite;
+}
+@keyframes cueSlide {
+  0% { transform: translateY(0); opacity: 0; }
+  18% { opacity: 1; }
+  82% { opacity: 1; }
+  100% { transform: translateY(46px); opacity: 0; }
+}
+
+/* =========================================================
+   RIBBON (scrolling gold strip under the hero)
+   ========================================================= */
+.ribbon {
+  background: var(--black);
+  overflow: hidden;
+  padding: 0.8rem 0;
+  border-top: 1px solid rgba(232, 204, 122, 0.22);
+  border-bottom: 1px solid rgba(232, 204, 122, 0.22);
+}
+.ribbon-track {
+  display: flex;
+  width: max-content;
+  animation: ribbonScroll 32s linear infinite;
+}
+.ribbon-group {
+  display: flex;
+  align-items: center;
+  gap: 2.2rem;
+  padding-right: 2.2rem;
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 1.02rem;
+  letter-spacing: 0.04em;
+  color: var(--gold-light);
+  white-space: nowrap;
+}
+.ribbon-group i { font-style: normal; color: var(--gold-dark); }
+@keyframes ribbonScroll {
+  to { transform: translateX(-50%); }
+}
+
 /* =========================================================
    ABOUT
    ========================================================= */
@@ -319,18 +429,36 @@ a.lang-btn { text-decoration: none; }
   gap: clamp(1.1rem, 2.5vw, 1.7rem);
 }
 .card {
+  position: relative;
   background: var(--white);
   border: 1px solid var(--line);
   border-radius: var(--radius);
   overflow: hidden;
   display: flex; flex-direction: column;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
 }
 .card-media { aspect-ratio: 1 / 1; overflow: hidden; background: #f2f2f2; }
 .card-media img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; }
+/* light band that sweeps across the card once on hover */
+.card::after,
+.blog-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  background: linear-gradient(105deg, transparent 42%, rgba(255, 255, 255, 0.26) 50%, transparent 58%);
+  background-size: 250% 100%;
+  background-position: 130% 0;
+}
 @media (hover: hover) {
-  .card:hover { transform: translateY(-6px); box-shadow: var(--shadow); }
+  .card:hover { transform: translateY(-6px); box-shadow: var(--shadow); border-color: rgba(201, 162, 39, 0.45); }
   .card:hover .card-media img { transform: scale(1.06); }
+  .card:hover::after,
+  .blog-card:hover::after {
+    background-position: -30% 0;
+    transition: background-position 0.9s ease;
+  }
 }
 .card-body { padding: 1.1rem 1.2rem 1.3rem; display: flex; flex-direction: column; gap: 0.4rem; }
 .card-body h3 { font-size: 1.25rem; }
@@ -361,6 +489,7 @@ a.lang-btn { text-decoration: none; }
   column-gap: clamp(0.7rem, 1.6vw, 1.1rem);
 }
 .g-item {
+  position: relative;
   break-inside: avoid;
   margin: 0 0 clamp(0.7rem, 1.6vw, 1.1rem);
   overflow: hidden;
@@ -368,8 +497,19 @@ a.lang-btn { text-decoration: none; }
   background: #f2f2f2;
 }
 .g-item img { width: 100%; height: auto; display: block; transition: transform 0.7s ease; }
+/* warm shadow rising from the bottom on hover */
+.g-item::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(180deg, transparent 55%, rgba(26, 20, 6, 0.38) 100%);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
 @media (hover: hover) {
   .g-item:hover img { transform: scale(1.05); }
+  .g-item:hover::after { opacity: 1; }
 }
 
 /* =========================================================
@@ -393,7 +533,15 @@ a.lang-btn { text-decoration: none; }
   box-shadow: var(--shadow-soft);
   border: 1px solid var(--line);
 }
-.visit-map iframe { width: 100%; height: 100%; min-height: 380px; border: 0; display: block; }
+.visit-map iframe {
+  width: 100%; height: 100%; min-height: 380px; border: 0; display: block;
+  /* soften the map's default colors toward the palette; lifts on hover for reading it */
+  filter: grayscale(35%) sepia(8%);
+  transition: filter 0.35s ease;
+}
+@media (hover: hover) {
+  .visit-map:hover iframe { filter: none; }
+}
 
 /* =========================================================
    FOOTER
@@ -436,6 +584,20 @@ a.lang-btn { text-decoration: none; }
   box-shadow: 0 12px 30px -8px rgba(37, 211, 102, 0.7);
   transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
+/* gentle expanding ring behind the button */
+.wa-float::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: 50%;
+  animation: waPulse 2.8s ease-out infinite;
+}
+@keyframes waPulse {
+  0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.45); }
+  70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
+  100% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
+}
 @media (hover: hover) {
   .wa-float:hover { transform: scale(1.08) translateY(-2px); box-shadow: 0 16px 36px -8px rgba(37, 211, 102, 0.85); }
 }
@@ -447,6 +609,51 @@ a.lang-btn { text-decoration: none; }
 /* Only hide-before-reveal when JS is available; without JS content stays visible */
 .js .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.7s ease, transform 0.7s ease; }
 .js .reveal.in { opacity: 1; transform: none; }
+
+/* Staggered children for the revealed grids: items cascade in one after another.
+   Uses an animation whose final keyframe omits transform, so it never interferes
+   with the cards' own hover transitions once it finishes. */
+.js .collection-grid.reveal:not(.in) > .card,
+.js .gallery-grid.reveal:not(.in) > .g-item,
+.js .blog-teaser-grid.reveal:not(.in) > .blog-card,
+.js .about-grid.reveal:not(.in) .value-props li { opacity: 0; }
+
+.js .collection-grid.reveal.in > .card,
+.js .gallery-grid.reveal.in > .g-item,
+.js .blog-teaser-grid.reveal.in > .blog-card,
+.js .about-grid.reveal.in .value-props li { animation: staggerIn 0.55s ease 0.05s both; }
+
+@keyframes staggerIn {
+  from { opacity: 0; transform: translateY(18px); }
+  to { opacity: 1; }
+}
+
+.js .collection-grid.reveal.in > .card:nth-child(2),
+.js .gallery-grid.reveal.in > .g-item:nth-child(2),
+.js .blog-teaser-grid.reveal.in > .blog-card:nth-child(2),
+.js .about-grid.reveal.in .value-props li:nth-child(2) { animation-delay: 0.13s; }
+
+.js .collection-grid.reveal.in > .card:nth-child(3),
+.js .gallery-grid.reveal.in > .g-item:nth-child(3),
+.js .blog-teaser-grid.reveal.in > .blog-card:nth-child(3),
+.js .about-grid.reveal.in .value-props li:nth-child(3) { animation-delay: 0.21s; }
+
+.js .collection-grid.reveal.in > .card:nth-child(4),
+.js .gallery-grid.reveal.in > .g-item:nth-child(4),
+.js .blog-teaser-grid.reveal.in > .blog-card:nth-child(4),
+.js .about-grid.reveal.in .value-props li:nth-child(4) { animation-delay: 0.29s; }
+
+.js .collection-grid.reveal.in > .card:nth-child(5),
+.js .gallery-grid.reveal.in > .g-item:nth-child(5) { animation-delay: 0.37s; }
+
+.js .collection-grid.reveal.in > .card:nth-child(6),
+.js .gallery-grid.reveal.in > .g-item:nth-child(6) { animation-delay: 0.45s; }
+
+.js .collection-grid.reveal.in > .card:nth-child(7),
+.js .gallery-grid.reveal.in > .g-item:nth-child(7) { animation-delay: 0.53s; }
+
+.js .collection-grid.reveal.in > .card:nth-child(8),
+.js .gallery-grid.reveal.in > .g-item:nth-child(8) { animation-delay: 0.61s; }
 
 /* =========================================================
    RESPONSIVE
@@ -522,7 +729,7 @@ a, button { -webkit-tap-highlight-color: rgba(201, 162, 39, 0.18); }
 :focus-visible { outline: 2px solid var(--gold-dark); outline-offset: 3px; border-radius: 4px; }
 
 @media (prefers-reduced-motion: reduce) {
-  * { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; scroll-behavior: auto !important; }
+  * { animation-duration: 0.001ms !important; animation-delay: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; transition-delay: 0.001ms !important; scroll-behavior: auto !important; }
   .js .reveal { opacity: 1; transform: none; }
 }
 
@@ -542,18 +749,19 @@ a, button { -webkit-tap-highlight-color: rgba(201, 162, 39, 0.18); }
 
 /* Post cards (shared by teaser + listing) */
 .blog-card {
+  position: relative; /* anchors the ::after sheen overlay */
   display: flex;
   flex-direction: column;
   background: var(--white);
   border: 1px solid var(--line);
   border-radius: var(--radius);
   overflow: hidden;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
 }
 .blog-card-media { aspect-ratio: 3 / 2; overflow: hidden; background: #f2f2f2; }
 .blog-card-media img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; }
 @media (hover: hover) {
-  .blog-card:hover { transform: translateY(-6px); box-shadow: var(--shadow); }
+  .blog-card:hover { transform: translateY(-6px); box-shadow: var(--shadow); border-color: rgba(201, 162, 39, 0.45); }
   .blog-card:hover .blog-card-media img { transform: scale(1.05); }
 }
 .blog-card-body { padding: 1.2rem 1.3rem 1.4rem; display: flex; flex-direction: column; gap: 0.55rem; flex: 1; }
