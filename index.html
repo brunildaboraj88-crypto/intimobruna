@@ -2,7 +2,7 @@
 <html lang="sq">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <script>document.documentElement.classList.add("js");</script>
   <title>IntimoBruna | Të brendshme, lingeri dhe rroba banje në Durrës</title>
   <meta name="description" content="IntimoBruna është dyqan familjar të brendshmesh në qendër të Durrësit, Shqipëri. Sytjena, lingeri, të brendshme për meshkuj, rroba banje dhe rroba nate për të gjithë familjen. Na shkruani në WhatsApp." />
@@ -146,9 +146,10 @@
 
   <!-- ================= HERO ================= -->
   <section class="hero" id="hero">
-    <video class="hero-video" autoplay muted loop playsinline preload="metadata" poster="assets/img/bras-pushup.jpeg">
-      <source src="assets/video/hero.mp4" type="video/mp4" />
-    </video>
+    <!-- The source is attached by script.js only on wide screens with a healthy connection.
+         Phones, save-data, 2G and reduced-motion visitors keep the poster and never fetch 4.7 MB. -->
+    <video class="hero-video" autoplay muted loop playsinline preload="none"
+           poster="assets/img/bras-pushup.jpeg" data-src="assets/video/hero.mp4"></video>
     <div class="hero-overlay"></div>
 
     <div class="container hero-content">
@@ -257,13 +258,13 @@
         <h2 class="section-title">Një vështrim brenda</h2>
       </div>
       <div class="gallery-grid reveal">
-        <figure class="g-item"><img src="assets/img/bras-pushup.jpeg" alt="Sytjena push-up të grumbulluara në të zezë, të bardhë, kafe dhe lëkurë" width="1280" height="1600" loading="lazy" /></figure>
-        <figure class="g-item"><img src="assets/img/bras-wireless.jpeg" alt="Sytjena pa tel në rozë, të zezë, lëkurë, gri dhe bordo" width="1600" height="1600" loading="lazy" /></figure>
-        <figure class="g-item"><img src="assets/img/panties.jpeg" alt="Të brendshme me dantellë në ngjyra të ndryshme" width="1280" height="1600" loading="lazy" /></figure>
-        <figure class="g-item"><img src="assets/img/bras-nightwear.jpeg" alt="Rroba nate dhe komplete sytjenash" width="1600" height="1600" loading="lazy" /></figure>
-        <figure class="g-item"><img src="assets/img/swimwear.jpeg" alt="Komplete bikini me pika" width="1600" height="1600" loading="lazy" /></figure>
-        <figure class="g-item"><img src="assets/img/bras-01.jpeg" alt="Sytjena push-up në ngjyrë lëkure, të zezë dhe të bardhë" width="1600" height="1600" loading="lazy" /></figure>
-        <figure class="g-item"><img src="assets/img/mens-boxers.jpeg" alt="Të brendshme boxer për meshkuj" width="1280" height="1600" loading="lazy" /></figure>
+        <figure class="g-item"><img src="assets/img/bras-pushup.jpeg" alt="Sytjena push-up të grumbulluara në të zezë, të bardhë, kafe dhe lëkurë" width="960" height="1200" loading="lazy" /></figure>
+        <figure class="g-item"><img src="assets/img/bras-wireless.jpeg" alt="Sytjena pa tel në rozë, të zezë, lëkurë, gri dhe bordo" width="900" height="900" loading="lazy" /></figure>
+        <figure class="g-item"><img src="assets/img/panties.jpeg" alt="Të brendshme me dantellë në ngjyra të ndryshme" width="720" height="900" loading="lazy" /></figure>
+        <figure class="g-item"><img src="assets/img/bras-nightwear.jpeg" alt="Rroba nate dhe komplete sytjenash" width="900" height="900" loading="lazy" /></figure>
+        <figure class="g-item"><img src="assets/img/swimwear.jpeg" alt="Komplete bikini me pika" width="900" height="900" loading="lazy" /></figure>
+        <figure class="g-item"><img src="assets/img/bras-01.jpeg" alt="Sytjena push-up në ngjyrë lëkure, të zezë dhe të bardhë" width="900" height="900" loading="lazy" /></figure>
+        <figure class="g-item"><img src="assets/img/mens-boxers.jpeg" alt="Të brendshme boxer për meshkuj" width="720" height="900" loading="lazy" /></figure>
       </div>
     </div>
   </section>

@@ -26,6 +26,7 @@
   /* Layout */
   --maxw: 1180px;
   --pad: clamp(1.1rem, 4vw, 2.5rem);
+  --header-h: 74px; /* the off-canvas menu hangs off this, so the two must agree */
   --radius: 14px;
   --shadow: 0 18px 45px -22px rgba(0, 0, 0, 0.45);
   --shadow-soft: 0 10px 30px -18px rgba(0, 0, 0, 0.35);
@@ -45,7 +46,9 @@ body {
   overflow-x: hidden;
 }
 
-img { max-width: 100%; display: block; }
+/* height: auto keeps the width/height attributes as aspect-ratio hints only,
+   so a CSS width can never stretch an image against its attribute height */
+img { max-width: 100%; height: auto; display: block; }
 
 a { color: inherit; text-decoration: none; }
 
@@ -94,7 +97,9 @@ h1, h2, h3, h4 { font-family: var(--serif); font-weight: 600; line-height: 1.12;
   color: #1a1406;
   box-shadow: 0 12px 26px -14px rgba(201, 162, 39, 0.85);
 }
-.btn-gold:hover { transform: translateY(-2px); box-shadow: 0 18px 34px -14px rgba(201, 162, 39, 0.95); }
+@media (hover: hover) {
+  .btn-gold:hover { transform: translateY(-2px); box-shadow: 0 18px 34px -14px rgba(201, 162, 39, 0.95); }
+}
 
 .btn-ghost {
   background: rgba(255, 255, 255, 0.06);
@@ -102,14 +107,18 @@ h1, h2, h3, h4 { font-family: var(--serif); font-weight: 600; line-height: 1.12;
   border-color: rgba(255, 255, 255, 0.55);
   backdrop-filter: blur(2px);
 }
-.btn-ghost:hover { background: #fff; color: var(--ink); border-color: #fff; transform: translateY(-2px); }
+@media (hover: hover) {
+  .btn-ghost:hover { background: #fff; color: var(--ink); border-color: #fff; transform: translateY(-2px); }
+}
 
 .btn-dark {
   background: var(--ink);
   color: #fff;
   border-color: var(--ink);
 }
-.btn-dark:hover { background: #000; transform: translateY(-2px); }
+@media (hover: hover) {
+  .btn-dark:hover { background: #000; transform: translateY(-2px); }
+}
 
 /* ---------- WhatsApp glyph (mask, takes currentColor) ---------- */
 .wa-glyph {
@@ -137,7 +146,7 @@ h1, h2, h3, h4 { font-family: var(--serif); font-weight: 600; line-height: 1.12;
 }
 .site-header.scrolled { box-shadow: 0 6px 24px -18px rgba(0, 0, 0, 0.5); border-bottom-color: var(--line); }
 
-.nav { display: flex; align-items: center; gap: 0.85rem; height: 74px; }
+.nav { display: flex; align-items: center; gap: 0.85rem; height: var(--header-h); }
 
 .brand-mark {
   font-family: var(--serif);
@@ -167,7 +176,9 @@ h1, h2, h3, h4 { font-family: var(--serif); font-weight: 600; line-height: 1.12;
   width: 0; height: 2px; background: var(--gold-grad);
   transition: width 0.28s ease;
 }
-.nav-links > a:not(.btn):hover::after { width: 100%; }
+@media (hover: hover) {
+  .nav-links > a:not(.btn):hover::after { width: 100%; }
+}
 
 /* Language switcher (SQ / IT / EN) */
 .lang-switch {
@@ -193,7 +204,9 @@ h1, h2, h3, h4 { font-family: var(--serif); font-weight: 600; line-height: 1.12;
   border-radius: 999px;
   transition: color 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
 }
-.lang-btn:hover { color: var(--ink); }
+@media (hover: hover) {
+  .lang-btn:hover { color: var(--ink); }
+}
 .lang-btn[aria-current="page"] {
   color: #1a1406;
   background: var(--gold-grad);
@@ -290,7 +303,9 @@ a.lang-btn { text-decoration: none; }
   padding: 1.15rem 1.3rem 1.3rem;
   transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
-.value-props li:hover { transform: translateY(-3px); box-shadow: var(--shadow-soft); }
+@media (hover: hover) {
+  .value-props li:hover { transform: translateY(-3px); box-shadow: var(--shadow-soft); }
+}
 .value-props h3 { font-size: 1.12rem; margin: 0 0 0.3rem; }
 .value-props p { color: var(--ink-soft); font-size: 0.92rem; }
 
@@ -311,10 +326,12 @@ a.lang-btn { text-decoration: none; }
   display: flex; flex-direction: column;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
-.card:hover { transform: translateY(-6px); box-shadow: var(--shadow); }
 .card-media { aspect-ratio: 1 / 1; overflow: hidden; background: #f2f2f2; }
 .card-media img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; }
-.card:hover .card-media img { transform: scale(1.06); }
+@media (hover: hover) {
+  .card:hover { transform: translateY(-6px); box-shadow: var(--shadow); }
+  .card:hover .card-media img { transform: scale(1.06); }
+}
 .card-body { padding: 1.1rem 1.2rem 1.3rem; display: flex; flex-direction: column; gap: 0.4rem; }
 .card-body h3 { font-size: 1.25rem; }
 .card-link { font-size: 0.85rem; font-weight: 600; color: var(--gold-dark); letter-spacing: 0.01em; }
@@ -326,7 +343,9 @@ a.lang-btn { text-decoration: none; }
   align-items: center; justify-content: center;
   text-align: center;
 }
-.card-cta:hover { background: #000; }
+@media (hover: hover) {
+  .card-cta:hover { background: #000; }
+}
 .card-cta-inner { padding: 2rem 1.5rem; display: flex; flex-direction: column; align-items: center; gap: 0.6rem; }
 .card-cta-inner h3 { font-size: 1.3rem; }
 .card-cta-inner p { color: rgba(255,255,255,0.72); font-size: 0.92rem; max-width: 24ch; }
@@ -349,7 +368,9 @@ a.lang-btn { text-decoration: none; }
   background: #f2f2f2;
 }
 .g-item img { width: 100%; height: auto; display: block; transition: transform 0.7s ease; }
-.g-item:hover img { transform: scale(1.05); }
+@media (hover: hover) {
+  .g-item:hover img { transform: scale(1.05); }
+}
 
 /* =========================================================
    VISIT
@@ -390,25 +411,34 @@ a.lang-btn { text-decoration: none; }
 .footer-col h4 { font-size: 1rem; color: #fff; margin-bottom: 1rem; letter-spacing: 0.02em; }
 .footer-col a, .footer-col span { display: block; font-size: 0.92rem; color: rgba(255,255,255,0.72); margin-bottom: 0.55rem; }
 .footer-col a { transition: color 0.2s ease; }
-.footer-col a:hover { color: var(--gold-light); }
+@media (hover: hover) {
+  .footer-col a:hover { color: var(--gold-light); }
+}
 
 .footer-bar { border-top: 1px solid rgba(255,255,255,0.1); }
 .footer-bar-inner { display: flex; justify-content: space-between; align-items: center; gap: 1rem; padding: 1.4rem var(--pad); font-size: 0.82rem; color: rgba(255,255,255,0.55); flex-wrap: wrap; }
 .to-top { transition: color 0.2s ease; }
-.to-top:hover { color: var(--gold-light); }
+@media (hover: hover) {
+  .to-top:hover { color: var(--gold-light); }
+}
 
 /* =========================================================
    FLOATING WHATSAPP
    ========================================================= */
 .wa-float {
-  position: fixed; right: 20px; bottom: 20px; z-index: 90;
+  position: fixed; z-index: 90;
+  /* keep clear of the iPhone home indicator and any rounded-corner inset */
+  right: max(20px, env(safe-area-inset-right));
+  bottom: max(20px, env(safe-area-inset-bottom));
   width: 58px; height: 58px; border-radius: 50%;
   background: var(--wa); color: #fff;
   display: flex; align-items: center; justify-content: center;
   box-shadow: 0 12px 30px -8px rgba(37, 211, 102, 0.7);
   transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
-.wa-float:hover { transform: scale(1.08) translateY(-2px); box-shadow: 0 16px 36px -8px rgba(37, 211, 102, 0.85); }
+@media (hover: hover) {
+  .wa-float:hover { transform: scale(1.08) translateY(-2px); box-shadow: 0 16px 36px -8px rgba(37, 211, 102, 0.85); }
+}
 .wa-glyph-lg { width: 30px; height: 30px; }
 
 /* =========================================================
@@ -434,18 +464,18 @@ a.lang-btn { text-decoration: none; }
   .lang-switch { margin-left: auto; }
   .nav-links {
     position: fixed;
-    inset: 74px 0 auto 0;
+    inset: var(--header-h) 0 auto 0;
     flex-direction: column;
     align-items: stretch;
     gap: 0;
     background: rgba(255, 255, 255, 0.98);
     backdrop-filter: blur(12px);
-    padding: 0.5rem var(--pad) 1.5rem;
+    padding: 0.5rem var(--pad) calc(1.5rem + env(safe-area-inset-bottom));
     border-bottom: 1px solid var(--line);
     box-shadow: 0 20px 30px -20px rgba(0,0,0,0.4);
     transform: translateY(-140%);
     transition: transform 0.35s ease;
-    max-height: calc(100svh - 74px);
+    max-height: calc(100svh - var(--header-h));
     overflow-y: auto;
   }
   .nav-links.open { transform: translateY(0); }
@@ -460,6 +490,33 @@ a.lang-btn { text-decoration: none; }
   .footer-grid { grid-template-columns: 1fr; }
   .hero-cta .btn, .visit-cta .btn { width: 100%; justify-content: center; }
 }
+
+/* ---------- Touch ---------- */
+/* Thumbs are not cursors: give every control a 44px hit area on touch devices.
+   .nav is a fixed var(--header-h) tall, so these grow the tap area without moving the header. */
+@media (pointer: coarse) {
+  .lang-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 44px;
+    /* height is what the thumb needs; width stays near natural so the three
+       buttons plus the brand and toggle still fit a 360px header */
+    min-width: 34px;
+  }
+  .nav-toggle {
+    align-items: center;
+    justify-content: center;
+    min-width: 44px;
+    min-height: 44px;
+  }
+  .btn-sm { min-height: 44px; }
+  .nav-links > a:not(.btn) { padding: 0.95rem 0.2rem; }
+}
+
+/* Kill the 300ms tap delay and the grey flash on tap */
+a, button, .btn, .lang-btn, .nav-toggle { touch-action: manipulation; }
+a, button { -webkit-tap-highlight-color: rgba(201, 162, 39, 0.18); }
 
 /* ---------- Focus + reduced motion ---------- */
 :focus-visible { outline: 2px solid var(--gold-dark); outline-offset: 3px; border-radius: 4px; }
@@ -493,10 +550,12 @@ a.lang-btn { text-decoration: none; }
   overflow: hidden;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
-.blog-card:hover { transform: translateY(-6px); box-shadow: var(--shadow); }
 .blog-card-media { aspect-ratio: 3 / 2; overflow: hidden; background: #f2f2f2; }
 .blog-card-media img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; }
-.blog-card:hover .blog-card-media img { transform: scale(1.05); }
+@media (hover: hover) {
+  .blog-card:hover { transform: translateY(-6px); box-shadow: var(--shadow); }
+  .blog-card:hover .blog-card-media img { transform: scale(1.05); }
+}
 .blog-card-body { padding: 1.2rem 1.3rem 1.4rem; display: flex; flex-direction: column; gap: 0.55rem; flex: 1; }
 .blog-chip {
   align-self: flex-start;
@@ -583,7 +642,9 @@ a.lang-btn { text-decoration: none; }
 .breadcrumbs li { display: flex; align-items: center; gap: 0.5rem; }
 .breadcrumbs li:not(:last-child)::after { content: "›"; color: var(--gold-dark); }
 .breadcrumbs a { color: var(--ink-soft); }
-.breadcrumbs a:hover { color: var(--gold-dark); }
+@media (hover: hover) {
+  .breadcrumbs a:hover { color: var(--gold-dark); }
+}
 .breadcrumbs [aria-current="page"] { color: var(--ink); font-weight: 500; }
 
 /* Quick-answer (TL;DR) box */

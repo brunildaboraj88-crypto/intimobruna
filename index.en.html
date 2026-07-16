@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <script>document.documentElement.classList.add("js");</script>
   <title>IntimoBruna | Lingerie &amp; Underwear Shop in Durrës</title>
   <meta name="description" content="IntimoBruna is a family-run intimates shop in central Durrës, Albania. Bras, lingerie, men's underwear, swimwear and nightwear for the whole family. Message us on WhatsApp." />
@@ -144,9 +144,10 @@
 
   <!-- ================= HERO ================= -->
   <section class="hero" id="hero">
-    <video class="hero-video" autoplay muted loop playsinline preload="metadata" poster="assets/img/bras-pushup.jpeg">
-      <source src="assets/video/hero.mp4" type="video/mp4" />
-    </video>
+    <!-- The source is attached by script.js only on wide screens with a healthy connection.
+         Phones, save-data, 2G and reduced-motion visitors keep the poster and never fetch 4.7 MB. -->
+    <video class="hero-video" autoplay muted loop playsinline preload="none"
+           poster="assets/img/bras-pushup.jpeg" data-src="assets/video/hero.mp4"></video>
     <div class="hero-overlay"></div>
 
     <div class="container hero-content">
@@ -255,13 +256,13 @@
         <h2 class="section-title">A look inside</h2>
       </div>
       <div class="gallery-grid reveal">
-        <figure class="g-item"><img src="assets/img/bras-pushup.jpeg" alt="Stacked push-up bras in black, white, brown and nude" width="1280" height="1600" loading="lazy" /></figure>
-        <figure class="g-item"><img src="assets/img/bras-wireless.jpeg" alt="Wireless bras in pink, black, nude, grey and burgundy" width="1600" height="1600" loading="lazy" /></figure>
-        <figure class="g-item"><img src="assets/img/panties.jpeg" alt="Lace-trim panties in assorted colours" width="1280" height="1600" loading="lazy" /></figure>
-        <figure class="g-item"><img src="assets/img/bras-nightwear.jpeg" alt="Nightwear and bra sets" width="1600" height="1600" loading="lazy" /></figure>
-        <figure class="g-item"><img src="assets/img/swimwear.jpeg" alt="Polka-dot bikini sets" width="1600" height="1600" loading="lazy" /></figure>
-        <figure class="g-item"><img src="assets/img/bras-01.jpeg" alt="Push-up bras in nude, black and white" width="1600" height="1600" loading="lazy" /></figure>
-        <figure class="g-item"><img src="assets/img/mens-boxers.jpeg" alt="Men's boxer briefs" width="1280" height="1600" loading="lazy" /></figure>
+        <figure class="g-item"><img src="assets/img/bras-pushup.jpeg" alt="Stacked push-up bras in black, white, brown and nude" width="960" height="1200" loading="lazy" /></figure>
+        <figure class="g-item"><img src="assets/img/bras-wireless.jpeg" alt="Wireless bras in pink, black, nude, grey and burgundy" width="900" height="900" loading="lazy" /></figure>
+        <figure class="g-item"><img src="assets/img/panties.jpeg" alt="Lace-trim panties in assorted colours" width="720" height="900" loading="lazy" /></figure>
+        <figure class="g-item"><img src="assets/img/bras-nightwear.jpeg" alt="Nightwear and bra sets" width="900" height="900" loading="lazy" /></figure>
+        <figure class="g-item"><img src="assets/img/swimwear.jpeg" alt="Polka-dot bikini sets" width="900" height="900" loading="lazy" /></figure>
+        <figure class="g-item"><img src="assets/img/bras-01.jpeg" alt="Push-up bras in nude, black and white" width="900" height="900" loading="lazy" /></figure>
+        <figure class="g-item"><img src="assets/img/mens-boxers.jpeg" alt="Men's boxer briefs" width="720" height="900" loading="lazy" /></figure>
       </div>
     </div>
   </section>

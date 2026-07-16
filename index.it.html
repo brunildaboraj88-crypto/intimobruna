@@ -2,7 +2,7 @@
 <html lang="it">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <script>document.documentElement.classList.add("js");</script>
   <title>IntimoBruna | Intimo, lingerie e costumi da bagno a Durazzo</title>
   <meta name="description" content="IntimoBruna è un negozio di intimo a conduzione familiare nel centro di Durazzo, Albania. Reggiseni, lingerie, intimo uomo, costumi da bagno e abbigliamento notte per tutta la famiglia. Scrivici su WhatsApp." />
@@ -144,9 +144,10 @@
 
   <!-- ================= HERO ================= -->
   <section class="hero" id="hero">
-    <video class="hero-video" autoplay muted loop playsinline preload="metadata" poster="assets/img/bras-pushup.jpeg">
-      <source src="assets/video/hero.mp4" type="video/mp4" />
-    </video>
+    <!-- The source is attached by script.js only on wide screens with a healthy connection.
+         Phones, save-data, 2G and reduced-motion visitors keep the poster and never fetch 4.7 MB. -->
+    <video class="hero-video" autoplay muted loop playsinline preload="none"
+           poster="assets/img/bras-pushup.jpeg" data-src="assets/video/hero.mp4"></video>
     <div class="hero-overlay"></div>
 
     <div class="container hero-content">
@@ -255,13 +256,13 @@
         <h2 class="section-title">Uno sguardo dentro</h2>
       </div>
       <div class="gallery-grid reveal">
-        <figure class="g-item"><img src="assets/img/bras-pushup.jpeg" alt="Reggiseni push-up impilati in nero, bianco, marrone e nude" width="1280" height="1600" loading="lazy" /></figure>
-        <figure class="g-item"><img src="assets/img/bras-wireless.jpeg" alt="Reggiseni senza ferretto in rosa, nero, nude, grigio e bordeaux" width="1600" height="1600" loading="lazy" /></figure>
-        <figure class="g-item"><img src="assets/img/panties.jpeg" alt="Slip con bordo in pizzo in vari colori" width="1280" height="1600" loading="lazy" /></figure>
-        <figure class="g-item"><img src="assets/img/bras-nightwear.jpeg" alt="Abbigliamento notte e completi reggiseno" width="1600" height="1600" loading="lazy" /></figure>
-        <figure class="g-item"><img src="assets/img/swimwear.jpeg" alt="Completi bikini a pois" width="1600" height="1600" loading="lazy" /></figure>
-        <figure class="g-item"><img src="assets/img/bras-01.jpeg" alt="Reggiseni push-up in nude, nero e bianco" width="1600" height="1600" loading="lazy" /></figure>
-        <figure class="g-item"><img src="assets/img/mens-boxers.jpeg" alt="Boxer da uomo" width="1280" height="1600" loading="lazy" /></figure>
+        <figure class="g-item"><img src="assets/img/bras-pushup.jpeg" alt="Reggiseni push-up impilati in nero, bianco, marrone e nude" width="960" height="1200" loading="lazy" /></figure>
+        <figure class="g-item"><img src="assets/img/bras-wireless.jpeg" alt="Reggiseni senza ferretto in rosa, nero, nude, grigio e bordeaux" width="900" height="900" loading="lazy" /></figure>
+        <figure class="g-item"><img src="assets/img/panties.jpeg" alt="Slip con bordo in pizzo in vari colori" width="720" height="900" loading="lazy" /></figure>
+        <figure class="g-item"><img src="assets/img/bras-nightwear.jpeg" alt="Abbigliamento notte e completi reggiseno" width="900" height="900" loading="lazy" /></figure>
+        <figure class="g-item"><img src="assets/img/swimwear.jpeg" alt="Completi bikini a pois" width="900" height="900" loading="lazy" /></figure>
+        <figure class="g-item"><img src="assets/img/bras-01.jpeg" alt="Reggiseni push-up in nude, nero e bianco" width="900" height="900" loading="lazy" /></figure>
+        <figure class="g-item"><img src="assets/img/mens-boxers.jpeg" alt="Boxer da uomo" width="720" height="900" loading="lazy" /></figure>
       </div>
     </div>
   </section>
