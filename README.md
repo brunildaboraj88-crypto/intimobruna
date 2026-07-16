@@ -1,0 +1,156 @@
+# IntimoBruna Website
+
+A trilingual (Albanian / Italian / English) showcase site for **IntimoBruna**, a
+family-run intimates shop in Durrës, Albania. Plain static site (HTML/CSS/JS) with
+no build step and no dependencies. Orders come in over WhatsApp.
+
+18 crawlable pages: 3 homepages, 3 blog listings, and 4 blog posts in 3 languages.
+
+## Files
+
+```
+index.html            Homepage (Albanian, the base language)
+index.it.html         Homepage (Italian)
+index.en.html         Homepage (English)
+styles.css            All styling (design system + layout)
+script.js             Homepage: WhatsApp links, menu, scroll effects, reveals, year
+blog/
+  index.html          Article listing (Albanian; .it.html / .en.html alongside)
+  <slug>.html         One article per file (.it.html / .en.html alongside)
+  blog.js             Blog pages: menu toggle, header shadow, year
+assets/
+  video/hero.mp4      Hero background video
+  img/                Logo + product photos
+404.html              Branded not-found page
+robots.txt            Crawl rules + sitemap pointer
+sitemap.xml           All 18 pages with hreflang alternates
+llms.txt              Summary + link list for AI crawlers
+netlify.toml          Host config (www -> apex redirect, caching, headers)
+README.md             This file
+```
+
+The original media (the loose `Herovid.mp4`, `LogoIntimoBruna.jpeg`, and
+`WhatsApp Image ...` photos) are still in the folder on disk, untouched, but are
+git-ignored: they are exact duplicates of the cleaned-up copies in `assets/`,
+which is what the site actually serves.
+
+## Preview it locally
+
+**Easiest:** double-click `index.html` to open it in your browser.
+
+**Recommended** (matches how it behaves when hosted). From this folder run:
+
+```bash
+python -m http.server 8000
+```
+
+then open http://localhost:8000 in your browser.
+
+## Things you can edit
+
+Copy lives directly in the HTML files, one per language. A few common edits:
+
+- **WhatsApp number.** It's the phone `355692939750` inside every `wa.me/...` link.
+  If it changes, find and replace it across **all** HTML files.
+- **Opening hours.** Currently Monday to Saturday, 08:30 to 21:30. They appear in the
+  visible "Visit us" text **and** in the JSON-LD (`openingHoursSpecification`). Change
+  both, in all three homepages.
+- **Address / map.** The address text reads *Rruga Aleksandër Goga, Durrës 2001, Albania*.
+  The map embed and the "Get directions" button both point to the exact map pin
+  (coordinates `41.320088,19.445277`). Update those if the location changes.
+- **Instagram / Facebook.** Live in the footer of each homepage and in the `sameAs`
+  arrays of the JSON-LD.
+- **Colors.** The gold/black/white palette is defined once at the top of
+  `styles.css` under `:root` (`--gold`, `--ink`, etc.).
+
+## Languages (Albanian / Italian / English)
+
+The site is trilingual with a **SQ · IT · EN** switcher in the header.
+
+**Each language is its own file.** There is no runtime translation and no JavaScript
+involved in language selection, so every page works with JS off and search engines
+index all three versions separately:
+
+- `index.html` (Albanian, the base language), `index.it.html`, `index.en.html`
+- the same pattern in `blog/`
+
+The switcher is a set of plain **links** between the three versions; the current one
+is marked with `aria-current="page"`. Every page declares its siblings with
+`hreflang` tags (`sq` / `it` / `en`, plus `x-default` pointing at Albanian) and an
+absolute `canonical` URL.
+
+To change text in one language, edit that language's file. There is **no** shared
+dictionary: a copy change usually means editing all three files.
+
+## Blog
+
+The blog lives in the `blog/` folder and is **trilingual (SQ / IT / EN)**, four posts
+in each language:
+
+- `blog/index.html`: the article listing page (Albanian), plus `index.it.html` / `index.en.html`.
+- `blog/<slug>.html`: one article per file, Albanian (e.g. `blog/rroba-banje-vere-durres.html`).
+- `blog/<slug>.it.html` and `blog/<slug>.en.html`: the Italian and English versions
+  of the same article (same slug, with a language suffix).
+- `blog/blog.js`: small script for the blog pages (menu toggle, header shadow, footer year).
+
+**To add a new post:** create the Albanian file first (copy an existing one,
+rename to a short slug, change the title/date/text and lead image
+`../assets/img/...`). Then copy it to `<slug>.it.html` and `<slug>.en.html` and
+translate. In all three, update the `canonical`, the `hreflang` links, the switcher
+`href`s, and the JSON-LD (`BlogPosting` + `BreadcrumbList`, and the `FAQPage` if the
+post has an FAQ; the FAQ schema text must match the visible FAQ text exactly).
+Then add a card to each `blog/index*.html` (visible card **and** the `blogPost` array
+in its JSON-LD), add a card to the "Nga blogu" section of the matching homepage, and
+add the three new URLs to `sitemap.xml`. Each post ends with a "visit us / WhatsApp"
+call-to-action that drives readers to the shop.
+
+Planned future topics: caring for lingerie, bras for every occasion, shapewear guide,
+holiday gift guide, maternity & nursing.
+
+## SEO / GEO setup
+
+The site is tuned for search engines and AI answer engines. Key facts and files:
+
+- **Canonical domain:** `https://intimobruna.com`. All canonical URLs, the sitemap,
+  Open Graph tags and structured data use this exact host. If you set up hosting on
+  `www.`, keep the apex as primary (the included `netlify.toml` 301-redirects www → apex).
+  If you use a **different domain**, find-and-replace `intimobruna.com` across the files.
+- **`sitemap.xml`**: all 18 pages with `hreflang` alternates. Re-add an entry whenever
+  you publish a new page.
+- **`robots.txt`**: allows crawling and points to the sitemap.
+- **`llms.txt`**: a summary + link list for AI crawlers (ChatGPT, Perplexity, etc.).
+- **`404.html`**: branded not-found page (most hosts serve it automatically).
+- **`netlify.toml`**: host config: www → apex redirect, asset caching, safe headers.
+  Only used on Netlify; on another host replicate the redirect + cache rules there.
+- **Structured data (JSON-LD):** homepages carry `ClothingStore`/`Organization`/`WebSite`
+  + `FAQPage`; blog listings carry `Blog` + `BreadcrumbList`; blog posts carry
+  `BlogPosting` + `BreadcrumbList` (+ `HowTo` on the fit guide) + `FAQPage`. If you
+  change the **opening hours, address or phone**, update them in the visible text
+  **and** the JSON-LD `<script>` blocks (search the files for
+  `openingHoursSpecification` and `+355 69 293 9750`).
+- After it's live, submit the sitemap in **Google Search Console** and make sure the
+  Google Business Profile uses the same name/address/phone as the site.
+
+## Publish it online (free)
+
+The site is a plain static folder, so any static host works. The repo already includes
+a `netlify.toml`, so **Netlify** is the smoothest path:
+
+1. At https://app.netlify.com, choose "Add new site" then "Import an existing project".
+2. Connect GitHub and pick this repository.
+3. Leave the build command empty and set the publish directory to `.` (there is no
+   build step). Netlify picks up `netlify.toml` automatically.
+4. Add `intimobruna.com` as a custom domain and point the DNS at Netlify.
+
+Every push to `main` then redeploys the site automatically.
+
+**No-git alternative:** drag this folder onto https://app.netlify.com/drop for an
+instant URL. Other options: Vercel, Cloudflare Pages, GitHub Pages, or classic FTP
+hosting. On a host other than Netlify, replicate the redirect and cache rules from
+`netlify.toml` yourself.
+
+## Later: adding an online shop
+
+The homepage is built as a showcase but structured so a shop can be added later.
+The collection cards and product images are grouped and easy to turn into real
+product or shop links.

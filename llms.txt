@@ -1,0 +1,21 @@
+# IntimoBruna
+
+> Family-run intimate apparel shop in the centre of Durrës, Albania. Bras, lingerie, men's underwear, swimwear and nightwear for the whole family. Order via WhatsApp or visit the shop in person. Site available in Albanian, Italian and English.
+
+- Address: Rruga Aleksandër Goga, Durrës 2001, Albania
+- Opening hours: Monday to Saturday, 08:30-21:30 (closed Sunday)
+- WhatsApp: +355 69 293 9750
+- Instagram: https://www.instagram.com/intimobruna/
+- Facebook: https://www.facebook.com/p/Bruna-intimo-100063503833618/
+
+## Main pages
+- [Home (Albanian)](https://intimobruna.com/): shop overview, collections, gallery, location, FAQ
+- [Home (Italian)](https://intimobruna.com/index.it.html)
+- [Home (English)](https://intimobruna.com/index.en.html)
+- [Blog](https://intimobruna.com/blog/index.html): practical guides on fit, swimwear, everyday basics and gifts
+
+## Blog articles (English versions)
+- [How to measure your bra size at home](https://intimobruna.com/blog/si-te-matni-madhesine-e-sytjenave.en.html)
+- [How to choose swimwear for summer in Durrës](https://intimobruna.com/blog/rroba-banje-vere-durres.en.html)
+- [The underwear basics that should never be missing from your drawer](https://intimobruna.com/blog/te-brendshme-baze.en.html)
+- [Lingerie as a gift: a simple guide](https://intimobruna.com/blog/lingeri-dhurate.en.html)

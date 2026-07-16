@@ -1,0 +1,13 @@
+# Original camera/WhatsApp media. These stay on disk (and in OneDrive) but are not
+# versioned: the site only serves the cleaned-up copies in assets/, and these are
+# byte-for-byte duplicates of them.
+/Herovid.mp4
+/LogoIntimoBruna.jpeg
+/WhatsApp Image *.jpeg
+
+# OS / editor cruft
+Thumbs.db
+desktop.ini
+.DS_Store
+*.swp
+.vscode/

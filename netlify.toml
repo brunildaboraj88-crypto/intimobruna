@@ -1,0 +1,28 @@
+# Netlify configuration for IntimoBruna
+# (If you deploy elsewhere, replicate the redirect + headers in that host's config.)
+
+# Force the canonical host: www -> apex (matches the canonical URLs and sitemap).
+[[redirects]]
+  from = "https://www.intimobruna.com/*"
+  to = "https://intimobruna.com/:splat"
+  status = 301
+  force = true
+
+# Long-cache the fingerprint-free static assets (images, video, fonts are external).
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+# HTML: always revalidate so content updates are picked up, plus safe defaults.
+[[headers]]
+  for = "/*.html"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+
+[[headers]]
+  for = "/sitemap.xml"
+  [headers.values]
+    Cache-Control = "public, max-age=3600"

@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+
+  <!-- Homepage (SQ / IT / EN) -->
+  <url>
+    <loc>https://intimobruna.com/</loc>
+    <lastmod>2026-07-15</lastmod>
+    <xhtml:link rel="alternate" hreflang="sq" href="https://intimobruna.com/"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://intimobruna.com/index.it.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://intimobruna.com/index.en.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://intimobruna.com/"/>
+  </url>
+  <url>
+    <loc>https://intimobruna.com/index.it.html</loc>
+    <lastmod>2026-07-15</lastmod>
+    <xhtml:link rel="alternate" hreflang="sq" href="https://intimobruna.com/"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://intimobruna.com/index.it.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://intimobruna.com/index.en.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://intimobruna.com/"/>
+  </url>
+  <url>
+    <loc>https://intimobruna.com/index.en.html</loc>
+    <lastmod>2026-07-15</lastmod>
+    <xhtml:link rel="alternate" hreflang="sq" href="https://intimobruna.com/"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://intimobruna.com/index.it.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://intimobruna.com/index.en.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://intimobruna.com/"/>
+  </url>
+
+  <!-- Blog listing (SQ / IT / EN) -->
+  <url>
+    <loc>https://intimobruna.com/blog/index.html</loc>
+    <lastmod>2026-07-15</lastmod>
+    <xhtml:link rel="alternate" hreflang="sq" href="https://intimobruna.com/blog/index.html"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://intimobruna.com/blog/index.it.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://intimobruna.com/blog/index.en.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://intimobruna.com/blog/index.html"/>
+  </url>
+  <url>
+    <loc>https://intimobruna.com/blog/index.it.html</loc>
+    <lastmod>2026-07-15</lastmod>
+    <xhtml:link rel="alternate" hreflang="sq" href="https://intimobruna.com/blog/index.html"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://intimobruna.com/blog/index.it.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://intimobruna.com/blog/index.en.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://intimobruna.com/blog/index.html"/>
+  </url>
+  <url>
+    <loc>https://intimobruna.com/blog/index.en.html</loc>
+    <lastmod>2026-07-15</lastmod>
+    <xhtml:link rel="alternate" hreflang="sq" href="https://intimobruna.com/blog/index.html"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://intimobruna.com/blog/index.it.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://intimobruna.com/blog/index.en.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://intimobruna.com/blog/index.html"/>
+  </url>
+
+  <!-- Post: bra fit guide -->
+  <url>
+    <loc>https://intimobruna.com/blog/si-te-matni-madhesine-e-sytjenave.html</loc>
+    <lastmod>2026-07-15</lastmod>
+    <xhtml:link rel="alternate" hreflang="sq" href="https://intimobruna.com/blog/si-te-matni-madhesine-e-sytjenave.html"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://intimobruna.com/blog/si-te-matni-madhesine-e-sytjenave.it.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://intimobruna.com/blog/si-te-matni-madhesine-e-sytjenave.en.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://intimobruna.com/blog/si-te-matni-madhesine-e-sytjenave.html"/>
+  </url>
+  <url>
+    <loc>https://intimobruna.com/blog/si-te-matni-madhesine-e-sytjenave.it.html</loc>
+    <lastmod>2026-07-15</lastmod>
+    <xhtml:link rel="alternate" hreflang="sq" href="https://intimobruna.com/blog/si-te-matni-madhesine-e-sytjenave.html"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://intimobruna.com/blog/si-te-matni-madhesine-e-sytjenave.it.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://intimobruna.com/blog/si-te-matni-madhesine-e-sytjenave.en.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://intimobruna.com/blog/si-te-matni-madhesine-e-sytjenave.html"/>
+  </url>
+  <url>
+    <loc>https://intimobruna.com/blog/si-te-matni-madhesine-e-sytjenave.en.html</loc>
+    <lastmod>2026-07-15</lastmod>
+    <xhtml:link rel="alternate" hreflang="sq" href="https://intimobruna.com/blog/si-te-matni-madhesine-e-sytjenave.html"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://intimobruna.com/blog/si-te-matni-madhesine-e-sytjenave.it.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://intimobruna.com/blog/si-te-matni-madhesine-e-sytjenave.en.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://intimobruna.com/blog/si-te-matni-madhesine-e-sytjenave.html"/>
+  </url>
+
+  <!-- Post: summer swimwear guide -->
+  <url>
+    <loc>https://intimobruna.com/blog/rroba-banje-vere-durres.html</loc>
+    <lastmod>2026-07-15</lastmod>
+    <xhtml:link rel="alternate" hreflang="sq" href="https://intimobruna.com/blog/rroba-banje-vere-durres.html"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://intimobruna.com/blog/rroba-banje-vere-durres.it.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://intimobruna.com/blog/rroba-banje-vere-durres.en.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://intimobruna.com/blog/rroba-banje-vere-durres.html"/>
+  </url>
+  <url>
+    <loc>https://intimobruna.com/blog/rroba-banje-vere-durres.it.html</loc>
+    <lastmod>2026-07-15</lastmod>
+    <xhtml:link rel="alternate" hreflang="sq" href="https://intimobruna.com/blog/rroba-banje-vere-durres.html"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://intimobruna.com/blog/rroba-banje-vere-durres.it.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://intimobruna.com/blog/rroba-banje-vere-durres.en.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://intimobruna.com/blog/rroba-banje-vere-durres.html"/>
+  </url>
+  <url>
+    <loc>https://intimobruna.com/blog/rroba-banje-vere-durres.en.html</loc>
+    <lastmod>2026-07-15</lastmod>
+    <xhtml:link rel="alternate" hreflang="sq" href="https://intimobruna.com/blog/rroba-banje-vere-durres.html"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://intimobruna.com/blog/rroba-banje-vere-durres.it.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://intimobruna.com/blog/rroba-banje-vere-durres.en.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://intimobruna.com/blog/rroba-banje-vere-durres.html"/>
+  </url>
+
+  <!-- Post: everyday essentials -->
+  <url>
+    <loc>https://intimobruna.com/blog/te-brendshme-baze.html</loc>
+    <lastmod>2026-07-15</lastmod>
+    <xhtml:link rel="alternate" hreflang="sq" href="https://intimobruna.com/blog/te-brendshme-baze.html"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://intimobruna.com/blog/te-brendshme-baze.it.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://intimobruna.com/blog/te-brendshme-baze.en.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://intimobruna.com/blog/te-brendshme-baze.html"/>
+  </url>
+  <url>
+    <loc>https://intimobruna.com/blog/te-brendshme-baze.it.html</loc>
+    <lastmod>2026-07-15</lastmod>
+    <xhtml:link rel="alternate" hreflang="sq" href="https://intimobruna.com/blog/te-brendshme-baze.html"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://intimobruna.com/blog/te-brendshme-baze.it.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://intimobruna.com/blog/te-brendshme-baze.en.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://intimobruna.com/blog/te-brendshme-baze.html"/>
+  </url>
+  <url>
+    <loc>https://intimobruna.com/blog/te-brendshme-baze.en.html</loc>
+    <lastmod>2026-07-15</lastmod>
+    <xhtml:link rel="alternate" hreflang="sq" href="https://intimobruna.com/blog/te-brendshme-baze.html"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://intimobruna.com/blog/te-brendshme-baze.it.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://intimobruna.com/blog/te-brendshme-baze.en.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://intimobruna.com/blog/te-brendshme-baze.html"/>
+  </url>
+
+  <!-- Post: lingerie as a gift -->
+  <url>
+    <loc>https://intimobruna.com/blog/lingeri-dhurate.html</loc>
+    <lastmod>2026-07-15</lastmod>
+    <xhtml:link rel="alternate" hreflang="sq" href="https://intimobruna.com/blog/lingeri-dhurate.html"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://intimobruna.com/blog/lingeri-dhurate.it.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://intimobruna.com/blog/lingeri-dhurate.en.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://intimobruna.com/blog/lingeri-dhurate.html"/>
+  </url>
+  <url>
+    <loc>https://intimobruna.com/blog/lingeri-dhurate.it.html</loc>
+    <lastmod>2026-07-15</lastmod>
+    <xhtml:link rel="alternate" hreflang="sq" href="https://intimobruna.com/blog/lingeri-dhurate.html"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://intimobruna.com/blog/lingeri-dhurate.it.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://intimobruna.com/blog/lingeri-dhurate.en.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://intimobruna.com/blog/lingeri-dhurate.html"/>
+  </url>
+  <url>
+    <loc>https://intimobruna.com/blog/lingeri-dhurate.en.html</loc>
+    <lastmod>2026-07-15</lastmod>
+    <xhtml:link rel="alternate" hreflang="sq" href="https://intimobruna.com/blog/lingeri-dhurate.html"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://intimobruna.com/blog/lingeri-dhurate.it.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://intimobruna.com/blog/lingeri-dhurate.en.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://intimobruna.com/blog/lingeri-dhurate.html"/>
+  </url>
+
+</urlset>
