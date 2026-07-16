@@ -361,35 +361,53 @@ a.lang-btn { text-decoration: none; }
 }
 
 /* =========================================================
-   RIBBON (scrolling gold strip under the hero)
+   CATEGORY INDEX (calm editorial strip under the hero)
    ========================================================= */
-.ribbon {
-  background: var(--black);
-  overflow: hidden;
-  padding: 0.8rem 0;
-  border-top: 1px solid rgba(232, 204, 122, 0.22);
-  border-bottom: 1px solid rgba(232, 204, 122, 0.22);
+.index-bar {
+  background: var(--cream);
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
 }
-.ribbon-track {
+.index-bar-inner {
   display: flex;
-  width: max-content;
-  animation: ribbonScroll 32s linear infinite;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: baseline;
+  column-gap: clamp(1.7rem, 4.5vw, 3.6rem);
+  row-gap: 0.15rem;
+  max-width: var(--maxw);
+  margin-inline: auto;
+  padding: 1.05rem var(--pad);
 }
-.ribbon-group {
-  display: flex;
-  align-items: center;
-  gap: 2.2rem;
-  padding-right: 2.2rem;
+.index-item {
+  position: relative;
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  padding: 0.25rem 0;
   font-family: var(--serif);
-  font-style: italic;
-  font-size: 1.02rem;
-  letter-spacing: 0.04em;
-  color: var(--gold-light);
+  font-size: 1.04rem;
+  color: var(--ink);
   white-space: nowrap;
 }
-.ribbon-group i { font-style: normal; color: var(--gold-dark); }
-@keyframes ribbonScroll {
-  to { transform: translateX(-50%); }
+.index-item i {
+  font-style: normal;
+  font-family: var(--sans);
+  font-size: 0.64rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  color: var(--gold-dark);
+}
+.index-item::after {
+  content: "";
+  position: absolute;
+  left: 0; bottom: 0;
+  width: 0; height: 1px;
+  background: var(--gold-grad);
+  transition: width 0.3s ease;
+}
+@media (hover: hover) {
+  .index-item:hover::after { width: 100%; }
 }
 
 /* =========================================================
@@ -719,6 +737,7 @@ a.lang-btn { text-decoration: none; }
   }
   .btn-sm { min-height: 44px; }
   .nav-links > a:not(.btn) { padding: 0.95rem 0.2rem; }
+  .index-item { padding: 0.6rem 0; }
 }
 
 /* Kill the 300ms tap delay and the grey flash on tap */
