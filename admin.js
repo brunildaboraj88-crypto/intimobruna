@@ -22,7 +22,7 @@
      browser and never in the repo. */
   var SALT = "a2b3577eb8a35c121b16a850412dcf30";
   var ITERS = 250000;
-  var LOGIN_HASH = "3f32860cf1e07ae9effc285c15fa6aceef205beb54959f3cb0c9409baf100a51";
+  var LOGIN_HASH = "99c7c505c16c857027d8149691cc8e58a5d49792a92191b90a2aa30434057bbe";
   var SESSION_KEY = "ib_admin_session";
   var TOKEN_KEY = "ib_publish_key";
 
