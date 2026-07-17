@@ -1023,6 +1023,8 @@ a, button { -webkit-tap-highlight-color: rgba(201, 162, 39, 0.18); }
 .admin-manual-body ol, .admin-manual-body ul { margin: 0 0 0.2rem 1.2rem; }
 .admin-manual-body li { margin-bottom: 0.4rem; }
 .admin-manual-body b { color: var(--ink); }
+/* Tappable links inside admin content (global reset strips link colour/underline) */
+.admin-manual-body a, .admin-steps a, .admin-note a { color: var(--gold-dark); text-decoration: underline; }
 
 /* Admin: phone tuning */
 @media (max-width: 560px) {

@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css?v=6" />
+  <link rel="stylesheet" href="styles.css?v=7" />
 </head>
 <body class="admin-body">
   <div class="admin-wrap">
@@ -94,6 +94,28 @@
         </details>
 
         <details>
+          <summary>Si ta krijoni çelësin nga telefoni</summary>
+          <div class="admin-manual-body">
+            <p><b>E rëndësishme:</b> krijojeni në <b>shfletuesin</b> e telefonit
+              (Chrome ose Safari), <b>jo</b> te aplikacioni GitHub. Aplikacioni nuk e ka
+              këtë cilësim.</p>
+            <ol>
+              <li>Hapni <a href="https://github.com/settings/personal-access-tokens/new"
+                target="_blank" rel="noopener">faqen për të krijuar çelësin</a> dhe hyni në
+                llogari. Nëse ju kërkon të hapni aplikacionin GitHub, qëndroni te shfletuesi.</li>
+              <li>Te <b>Repository access</b> zgjidhni <b>Only select repositories</b> dhe
+                pastaj <b>intimobruna</b>.</li>
+              <li>Te <b>Permissions → Repository permissions → Contents</b> vendosni
+                <b>Read and write</b>.</li>
+              <li>Shtypni <b>Generate token</b> dhe <b>kopjoni</b> çelësin (shfaqet vetëm
+                një herë).</li>
+              <li>Kthehuni te kjo faqe, ngjiteni te kutia <b>“Çelësi i publikimit”</b> më
+                poshtë dhe shtypni <b>Ruaj çelësin</b>.</li>
+            </ol>
+          </div>
+        </details>
+
+        <details>
           <summary>Probleme të zakonshme</summary>
           <div class="admin-manual-body">
             <ul>
@@ -143,11 +165,11 @@
         <h2>Çelësi i publikimit</h2>
         <p class="admin-note">
           Për të ruajtur ndryshimet në faqe nevojitet një çelës nga GitHub, vetëm një herë për këtë pajisje.
-          Çelësi ruhet vetëm në këtë shfletues.<br />
+          Çelësi ruhet vetëm në këtë shfletues. Mund ta bëni edhe nga telefoni, te shfletuesi (jo aplikacioni GitHub).<br />
           <em>Publishing needs a GitHub token (once per device). It is stored only in this browser.</em>
         </p>
         <ol class="admin-steps">
-          <li>Hyni në <b>github.com</b> → Settings → Developer settings → Fine-grained personal access tokens → <b>Generate new token</b>.</li>
+          <li><a href="https://github.com/settings/personal-access-tokens/new" target="_blank" rel="noopener"><b>Krijo çelës të ri</b></a> te GitHub (ose: <b>github.com</b> → Settings → Developer settings → Fine-grained personal access tokens → <b>Generate new token</b>).</li>
           <li>Repository access: <b>Only select repositories</b> → zgjidhni <b>intimobruna</b>.</li>
           <li>Permissions → Repository permissions → <b>Contents: Read and write</b>.</li>
           <li>Krijoni çelësin, kopjojeni dhe ngjiteni këtu poshtë <em>(create it, copy it, paste it below)</em>.</li>

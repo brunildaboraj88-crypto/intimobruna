@@ -183,13 +183,13 @@ localStorage (never in the repo). Tokens expire (1 year max), so renew it when
 GitHub emails you.
 
 **Security note:** `admin.js` is served to every visitor of the live site, so its
-contents are public no matter whether the repo is public or private — the file must
+contents are public no matter whether the repo is public or private; the file must
 therefore contain nothing that reveals the password. It stores only a **salted PBKDF2**
 hash (250k iterations) of `username:password`, so a strong password cannot be recovered
 from it even by someone reading the source. The login is still client-side, so a
 technical visitor could skip the prompt to *view* the (empty) dashboard, but cannot
 publish anything without the **GitHub token**, which lives only in the owner's browser
-and is never in the repo — that token is the real protection.
+and is never in the repo; that token is the real protection.
 
 To change the login: open `/admin.html`, and in the browser console (F12) run
 `ibHash("bruna", "the-new-password").then(console.log)`, then replace `LOGIN_HASH` in
