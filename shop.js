@@ -1,5 +1,7 @@
-/* IntimoBruna — shop section: renders the items for sale from data/products.json.
-   Items are managed from admin.html, which commits the JSON (and photos) to the repo. */
+/* IntimoBruna — shop page (dyqani*.html): renders the items for sale from
+   data/products.json. Items are managed from admin.html, which commits the JSON
+   (and photos) to the repo. While the list is empty (or unreachable) the page
+   shows the "coming soon" note instead of an empty grid. */
 (function () {
   "use strict";
 
@@ -21,8 +23,8 @@
     }
   };
 
-  var section = document.getElementById("shop");
-  var grid = section ? section.querySelector(".shop-grid") : null;
+  var grid = document.querySelector(".shop-grid");
+  var empty = document.getElementById("shopEmpty");
   if (!grid) return;
 
   var t = STRINGS[document.documentElement.lang] || STRINGS.sq;
@@ -31,14 +33,15 @@
   fetch("data/products.json?ts=" + Date.now())
     .then(function (res) { return res.ok ? res.json() : null; })
     .then(function (data) {
-      var products = data && data.products;
-      if (!products || !products.length) return;
+      var products = (data && data.products) || [];
       products.forEach(function (p) {
         if (p && p.name) grid.appendChild(buildCard(p));
       });
-      if (grid.children.length) section.hidden = false;
+      /* the "coming soon" note is visible by default (works with JS off);
+         hide it only once real items are on the page */
+      if (grid.children.length && empty) empty.hidden = true;
     })
-    .catch(function () { /* the section simply stays hidden */ });
+    .catch(function () { /* note stays visible */ });
 
   function buildCard(p) {
     var card = document.createElement("article");

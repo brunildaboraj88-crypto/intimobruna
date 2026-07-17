@@ -28,6 +28,32 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://intimobruna.com/"/>
   </url>
 
+  <!-- Shop (SQ / IT / EN) -->
+  <url>
+    <loc>https://intimobruna.com/dyqani.html</loc>
+    <lastmod>2026-07-17</lastmod>
+    <xhtml:link rel="alternate" hreflang="sq" href="https://intimobruna.com/dyqani.html"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://intimobruna.com/dyqani.it.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://intimobruna.com/dyqani.en.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://intimobruna.com/dyqani.html"/>
+  </url>
+  <url>
+    <loc>https://intimobruna.com/dyqani.it.html</loc>
+    <lastmod>2026-07-17</lastmod>
+    <xhtml:link rel="alternate" hreflang="sq" href="https://intimobruna.com/dyqani.html"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://intimobruna.com/dyqani.it.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://intimobruna.com/dyqani.en.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://intimobruna.com/dyqani.html"/>
+  </url>
+  <url>
+    <loc>https://intimobruna.com/dyqani.en.html</loc>
+    <lastmod>2026-07-17</lastmod>
+    <xhtml:link rel="alternate" hreflang="sq" href="https://intimobruna.com/dyqani.html"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://intimobruna.com/dyqani.it.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://intimobruna.com/dyqani.en.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://intimobruna.com/dyqani.html"/>
+  </url>
+
   <!-- Blog listing (SQ / IT / EN) -->
   <url>
     <loc>https://intimobruna.com/blog/index.html</loc>

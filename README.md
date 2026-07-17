@@ -149,16 +149,18 @@ instant URL. Other options: Vercel, Cloudflare Pages, GitHub Pages, or classic F
 hosting. On a host other than Netlify, replicate the redirect and cache rules from
 `netlify.toml` yourself.
 
-## Shop section + admin page
+## Shop page + admin page
 
-The homepages have a **"Dyqani / Negozio / Shop"** section that lists individual items
-for sale (name, price, photo, and a WhatsApp order button). The items live in one
-shared data file:
+The shop is a dedicated page — `dyqani.html` (Albanian), with `dyqani.it.html` /
+`dyqani.en.html` alongside — listing individual items for sale (name, price, photo,
+and a WhatsApp order button). It is linked from the nav and footer of every page.
+The items live in one shared data file:
 
 - `data/products.json` — the list of items (same items on all three languages;
-  names/prices appear exactly as typed).
-- `shop.js` — loaded by the three homepages; renders the cards from the JSON.
-  If the list is empty or missing, the whole section stays hidden.
+  names/prices appear exactly as typed). **Ships empty**: items are added only from
+  the admin page — never hardcode names or prices in the repo. While the list is
+  empty the page shows a "coming soon" note with a WhatsApp button.
+- `shop.js` — loaded by the three shop pages; renders the cards from the JSON.
 - `assets/img/shop/` — photos uploaded from the admin page land here.
 
 ### Managing items: `admin.html`
