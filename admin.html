@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="sq">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>IntimoBruna — Administrimi i dyqanit</title>
+  <link rel="icon" type="image/jpeg" href="assets/img/logo.jpeg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css?v=3" />
+</head>
+<body class="admin-body">
+  <div class="admin-wrap">
+    <header class="admin-header">
+      <span class="brand-mark">Intimo<span class="brand-gold">Bruna</span> · Admin</span>
+      <button class="btn btn-dark btn-sm" id="logoutBtn" type="button" hidden>Dil</button>
+    </header>
+
+    <!-- ============ LOGIN ============ -->
+    <section class="admin-card" id="loginView">
+      <h2>Hyrje</h2>
+      <form id="loginForm">
+        <div class="admin-field">
+          <label for="loginUser">Përdoruesi</label>
+          <input type="text" id="loginUser" autocomplete="username" required />
+        </div>
+        <div class="admin-field">
+          <label for="loginPass">Fjalëkalimi</label>
+          <input type="password" id="loginPass" autocomplete="current-password" required />
+        </div>
+        <button class="btn btn-gold btn-sm" type="submit">Hyr</button>
+        <p class="admin-msg err" id="loginMsg">Emri ose fjalëkalimi është gabim.</p>
+      </form>
+    </section>
+
+    <!-- ============ DASHBOARD ============ -->
+    <div id="adminView" hidden>
+
+      <!-- ============ MANUAL ============ -->
+      <section class="admin-card admin-manual">
+        <h2>Si funksionon kjo faqe</h2>
+        <p class="admin-note">Këtu menaxhoni artikujt që shfaqen te seksioni <b>“Dyqani”</b> i
+          intimobruna.com. Çdo ndryshim publikohet për të gjithë vizitorët, në të tria gjuhët,
+          brenda 1–2 minutash. Hapni një temë më poshtë për udhëzimet.</p>
+
+        <details>
+          <summary>Çfarë është kjo faqe?</summary>
+          <div class="admin-manual-body">
+            <p>Ky është paneli i administrimit të dyqanit. Vetëm ju e përdorni — vizitorët nuk e
+              shohin. Nga këtu mund të <b>shtoni</b> artikuj të rinj për shitje dhe të <b>hiqni</b>
+              ata që s'i keni më.</p>
+            <p>Emri dhe çmimi shfaqen në faqe <b>saktësisht siç i shkruani</b>, njësoj në shqip,
+              italisht dhe anglisht. Çdo artikull ka butonin e vet të WhatsApp-it: klienti që e
+              shtyp ju shkruan direkt për atë artikull.</p>
+          </div>
+        </details>
+
+        <details>
+          <summary>Si të shtoni një artikull</summary>
+          <div class="admin-manual-body">
+            <ol>
+              <li>Te <b>“Shto artikull të ri”</b> shkruani emrin e artikullit
+                (p.sh. <i>Sytjena push-up</i>).</li>
+              <li>Shkruani çmimin ashtu siç doni të duket në faqe
+                (p.sh. <i>1.900 Lekë</i> ose <i>15 €</i>).</li>
+              <li>Zgjidhni një foto nga galeria — opsionale. Fotoja zvogëlohet vetë,
+                s'ka nevojë ta përgatisni.</li>
+              <li>Shtypni <b>“Shto dhe publiko”</b> dhe prisni mesazhin e gjelbër.</li>
+              <li>Pas 1–2 minutash artikulli duket në intimobruna.com, te seksioni “Dyqani”.</li>
+            </ol>
+          </div>
+        </details>
+
+        <details>
+          <summary>Si të hiqni një artikull</summary>
+          <div class="admin-manual-body">
+            <p>Te lista <b>“Artikujt në shitje”</b> shtypni <b>“Hiq”</b> pranë artikullit dhe
+              konfirmoni. Edhe heqja duket në faqe pas 1–2 minutash.</p>
+          </div>
+        </details>
+
+        <details>
+          <summary>Çelësi i publikimit — pse duhet?</summary>
+          <div class="admin-manual-body">
+            <p>Faqja ruhet në GitHub, dhe GitHub kërkon një <b>çelës</b> për të lejuar ndryshime.
+              Pa të, mund të hyni dhe të shihni listën, por s'mund të publikoni.</p>
+            <p>Çelësi vendoset <b>vetëm një herë për çdo pajisje</b> (telefon, kompjuter) dhe
+              ruhet vetëm në atë pajisje — jo në faqe. Skadon pas rreth një viti; atëherë
+              krijoni një të ri. Hapat e krijimit i gjeni te kutia <b>“Çelësi i publikimit”</b>
+              në fund të kësaj faqeje.</p>
+          </div>
+        </details>
+
+        <details>
+          <summary>Probleme të zakonshme</summary>
+          <div class="admin-manual-body">
+            <ul>
+              <li><b>“Çelësi nuk pranohet nga GitHub”</b> — çelësi është shkruar gabim ose ka
+                skaduar. Krijoni një të ri sipas hapave te kutia e çelësit.</li>
+              <li><b>“Së pari vendosni çelësin e publikimit”</b> — kjo pajisje s'ka ende çelës.
+                Vendoseni një herë dhe nuk ju pyet më.</li>
+              <li><b>“Provoni edhe një herë”</b> — u bënë dy ndryshime njëkohësisht.
+                Thjesht përsëriteni veprimin.</li>
+              <li><b>“Fotoja nuk mund të lexohet”</b> — provoni një foto tjetër (JPG ose PNG).</li>
+              <li><b>Ndryshimi s'duket në faqe</b> — prisni 1–2 minuta dhe rifreskojeni faqen.</li>
+              <li><b>Harruat fjalëkalimin?</b> — kërkojini ndihmë atij që kujdeset për faqen.</li>
+            </ul>
+          </div>
+        </details>
+      </section>
+
+      <section class="admin-card">
+        <h2>Artikujt në shitje</h2>
+        <ul class="admin-items" id="itemList"></ul>
+        <p class="admin-empty" id="itemsEmpty" hidden>S'ka ende artikuj. Shtoni të parin më poshtë.</p>
+        <p class="admin-msg" id="listMsg"></p>
+      </section>
+
+      <section class="admin-card">
+        <h2>Shto artikull të ri</h2>
+        <form id="addForm">
+          <div class="admin-field">
+            <label for="addName">Emri i artikullit</label>
+            <input type="text" id="addName" required maxlength="80" placeholder="p.sh. Sytjena push-up" />
+          </div>
+          <div class="admin-field">
+            <label for="addPrice">Çmimi</label>
+            <input type="text" id="addPrice" required maxlength="30" placeholder="p.sh. 1.900 Lekë" />
+          </div>
+          <div class="admin-field">
+            <label for="addPhoto">Foto (opsionale)</label>
+            <input type="file" id="addPhoto" accept="image/*" />
+            <img class="admin-photo-preview" id="photoPreview" alt="Parapamje e fotos" />
+          </div>
+          <button class="btn btn-gold btn-sm" type="submit" id="addBtn">Shto dhe publiko</button>
+          <p class="admin-msg" id="addMsg"></p>
+        </form>
+      </section>
+
+      <section class="admin-card" id="tokenCard">
+        <h2>Çelësi i publikimit</h2>
+        <p class="admin-note">
+          Për të ruajtur ndryshimet në faqe nevojitet një çelës nga GitHub — vetëm një herë për këtë pajisje.
+          Çelësi ruhet vetëm në këtë shfletues.<br />
+          <em>Publishing needs a GitHub token (once per device). It is stored only in this browser.</em>
+        </p>
+        <ol class="admin-steps">
+          <li>Hyni në <b>github.com</b> → Settings → Developer settings → Fine-grained personal access tokens → <b>Generate new token</b>.</li>
+          <li>Repository access: <b>Only select repositories</b> → zgjidhni <b>intimobruna</b>.</li>
+          <li>Permissions → Repository permissions → <b>Contents: Read and write</b>.</li>
+          <li>Krijoni çelësin, kopjojeni dhe ngjiteni këtu poshtë <em>(create it, copy it, paste it below)</em>.</li>
+        </ol>
+        <div class="admin-field">
+          <label for="tokenInput">Çelësi (token)</label>
+          <input type="password" id="tokenInput" autocomplete="off" placeholder="github_pat_…" />
+        </div>
+        <button class="btn btn-dark btn-sm" id="saveTokenBtn" type="button">Ruaj çelësin</button>
+        <p class="admin-msg" id="tokenMsg"></p>
+      </section>
+    </div>
+  </div>
+
+  <script src="admin.js"></script>
+</body>
+</html>

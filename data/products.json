@@ -1,0 +1,22 @@
+{
+  "products": [
+    {
+      "id": "p-seed-1",
+      "name": "Sytjena push-up",
+      "price": "1.900 Lekë",
+      "image": "assets/img/bras-pushup.jpeg"
+    },
+    {
+      "id": "p-seed-2",
+      "name": "Komplet bikini me pika",
+      "price": "2.500 Lekë",
+      "image": "assets/img/swimwear.jpeg"
+    },
+    {
+      "id": "p-seed-3",
+      "name": "Boksere për meshkuj",
+      "price": "1.200 Lekë",
+      "image": "assets/img/mens-boxers.jpeg"
+    }
+  ]
+}

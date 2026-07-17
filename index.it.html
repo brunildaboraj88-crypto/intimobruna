@@ -120,6 +120,7 @@
 
       <nav class="nav-links" id="navLinks" aria-label="Primary">
         <a href="#collections">Collezioni</a>
+        <a href="#shop">Negozio</a>
         <a href="#about">Chi siamo</a>
         <a href="#gallery">Galleria</a>
         <a href="blog/index.it.html">Blog</a>
@@ -258,6 +259,20 @@
           </div>
         </a>
       </div>
+    </div>
+  </section>
+
+  <!-- ================= SHOP ================= -->
+  <!-- Items live in data/products.json and are managed from admin.html.
+       The section stays hidden until shop.js finds at least one item. -->
+  <section class="section shop" id="shop" hidden>
+    <div class="container">
+      <div class="section-head reveal">
+        <p class="eyebrow">Negozio</p>
+        <h2 class="section-title">Articoli in vendita</h2>
+        <p class="section-lead">Una selezione dai nostri scaffali. Vi piace qualcosa? Ordinatelo direttamente su WhatsApp.</p>
+      </div>
+      <div class="shop-grid reveal"></div>
     </div>
   </section>
 
@@ -431,6 +446,7 @@
       <div class="footer-col">
         <h4>Esplora</h4>
         <a href="#collections">Collezioni</a>
+        <a href="#shop">Negozio</a>
         <a href="#about">Chi siamo</a>
         <a href="#gallery">Galleria</a>
         <a href="blog/index.it.html">Blog</a>
@@ -462,5 +478,6 @@
   </a>
 
   <script src="script.js"></script>
+  <script src="shop.js"></script>
 </body>
 </html>

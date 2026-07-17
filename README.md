@@ -149,8 +149,42 @@ instant URL. Other options: Vercel, Cloudflare Pages, GitHub Pages, or classic F
 hosting. On a host other than Netlify, replicate the redirect and cache rules from
 `netlify.toml` yourself.
 
-## Later: adding an online shop
+## Shop section + admin page
 
-The homepage is built as a showcase but structured so a shop can be added later.
-The collection cards and product images are grouped and easy to turn into real
-product or shop links.
+The homepages have a **"Dyqani / Negozio / Shop"** section that lists individual items
+for sale (name, price, photo, and a WhatsApp order button). The items live in one
+shared data file:
+
+- `data/products.json` — the list of items (same items on all three languages;
+  names/prices appear exactly as typed).
+- `shop.js` — loaded by the three homepages; renders the cards from the JSON.
+  If the list is empty or missing, the whole section stays hidden.
+- `assets/img/shop/` — photos uploaded from the admin page land here.
+
+### Managing items: `admin.html`
+
+Open `https://intimobruna.com/admin.html` and log in (the page is noindexed and
+blocked in robots.txt). From there you can **add** an item (name, price, optional
+photo — photos are automatically shrunk in the browser before upload) and **remove**
+existing ones.
+
+Because the site is static, the admin page publishes changes by committing
+`data/products.json` (and photos) to this GitHub repository through the GitHub API.
+GitHub Pages then redeploys automatically, so changes are live in ~1–2 minutes.
+
+**One-time setup per device — the publish key.** Saving changes requires a GitHub
+fine-grained personal access token: github.com → Settings → Developer settings →
+Fine-grained personal access tokens → Generate new token → Repository access: only
+`intimobruna` → Permissions: **Contents – Read and write**. Paste it into the
+"Çelësi i publikimit" box on the admin page. It is stored only in that browser's
+localStorage (never in the repo). Tokens expire (1 year max), so renew it when
+GitHub emails you.
+
+**Security note:** a static site cannot truly hide a password — the admin login is a
+convenience gate (stored as a SHA-256 hash, not plain text). The thing that actually
+prevents strangers from changing the shop is the GitHub token, which only exists on
+the owner's devices. To change the login, hash the new `username:password` pair
+(username lowercased) with SHA-256 and replace `LOGIN_HASH` in `admin.js`.
+
+Note: items added via the admin page land in the GitHub repository, so `git pull`
+before working on the code locally.

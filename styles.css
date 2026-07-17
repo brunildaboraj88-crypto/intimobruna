@@ -930,3 +930,118 @@ a, button { -webkit-tap-highlight-color: rgba(201, 162, 39, 0.18); }
 @media (max-width: 560px) {
   .blog-teaser-grid { grid-template-columns: 1fr; }
 }
+
+/* =========================================================
+   SHOP (homepage section; items come from data/products.json,
+   managed from admin.html)
+   ========================================================= */
+.shop { background: var(--white); }
+.shop-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: clamp(1.1rem, 2.5vw, 1.7rem);
+}
+.shop-card .card-body { align-items: flex-start; }
+.shop-price {
+  font-family: var(--serif);
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--gold-dark);
+}
+.shop-order { margin-top: 0.4rem; }
+
+/* =========================================================
+   ADMIN (admin.html — login + product management)
+   ========================================================= */
+.admin-body {
+  background: var(--cream);
+  min-height: 100vh;
+  padding: clamp(1.2rem, 4vw, 3rem) var(--pad);
+}
+.admin-wrap { max-width: 760px; margin-inline: auto; }
+.admin-header {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 1rem; margin-bottom: 1.6rem;
+}
+.admin-header .brand-mark { font-size: 1.35rem; }
+.admin-card {
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-soft);
+  padding: clamp(1.2rem, 3vw, 1.8rem);
+  margin-bottom: 1.4rem;
+}
+.admin-card h2 { font-size: 1.3rem; margin-bottom: 1rem; }
+.admin-field { margin-bottom: 1rem; }
+.admin-field label {
+  display: block;
+  font-size: 0.82rem; font-weight: 600;
+  letter-spacing: 0.04em; text-transform: uppercase;
+  color: var(--ink-soft);
+  margin-bottom: 0.35rem;
+}
+.admin-field input[type="text"],
+.admin-field input[type="password"] {
+  width: 100%;
+  padding: 0.7rem 0.9rem;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  font: inherit;
+  background: var(--white);
+}
+.admin-field input:focus { outline: 2px solid var(--gold); outline-offset: 1px; }
+.admin-note { font-size: 0.88rem; color: var(--ink-soft); margin-bottom: 0.8rem; }
+.admin-steps { font-size: 0.88rem; color: var(--ink-soft); margin: 0 0 1rem 1.2rem; }
+.admin-steps li { margin-bottom: 0.3rem; }
+.admin-msg { font-size: 0.9rem; margin-top: 0.8rem; display: none; }
+.admin-msg.show { display: block; }
+.admin-msg.ok { color: #1c7c3c; }
+.admin-msg.err { color: #b3261e; }
+
+.admin-items { list-style: none; margin: 0; padding: 0; }
+.admin-item {
+  display: flex; align-items: center; gap: 0.9rem;
+  padding: 0.7rem 0;
+  border-top: 1px solid var(--line);
+}
+.admin-item:first-child { border-top: 0; }
+.admin-item img { width: 54px; height: 54px; object-fit: cover; border-radius: 10px; background: #f2f2f2; flex-shrink: 0; }
+.admin-item-info { flex: 1; min-width: 0; }
+.admin-item-name { font-weight: 600; overflow-wrap: anywhere; }
+.admin-item-price { font-size: 0.88rem; color: var(--gold-dark); }
+.btn-remove {
+  background: #fff;
+  border-color: #d8433a;
+  color: #b3261e;
+}
+@media (hover: hover) { .btn-remove:hover { background: #b3261e; color: #fff; transform: translateY(-1px); } }
+.admin-photo-preview { max-width: 140px; border-radius: 10px; margin-top: 0.6rem; display: none; }
+.admin-photo-preview.show { display: block; }
+.admin-empty { color: var(--ink-soft); font-size: 0.92rem; padding: 0.4rem 0; }
+
+/* Manual ("Si funksionon kjo faqe") — native details/summary accordion */
+.admin-manual details { border-top: 1px solid var(--line); }
+.admin-manual summary {
+  cursor: pointer;
+  padding: 0.75rem 1.8rem 0.75rem 0.2rem;
+  font-weight: 600;
+  list-style: none;
+  position: relative;
+}
+.admin-manual summary::-webkit-details-marker { display: none; }
+.admin-manual summary::after {
+  content: "+";
+  position: absolute; right: 0.5rem; top: 50%;
+  transform: translateY(-50%);
+  color: var(--gold-dark);
+  font-weight: 600; font-size: 1.15rem; line-height: 1;
+}
+.admin-manual details[open] summary::after { content: "–"; }
+@media (hover: hover) { .admin-manual summary:hover { color: var(--gold-dark); } }
+.admin-manual-body { padding: 0.1rem 0.2rem 0.95rem; font-size: 0.92rem; color: var(--ink-soft); }
+.admin-manual-body p { margin-bottom: 0.6rem; }
+.admin-manual-body p:last-child { margin-bottom: 0; }
+.admin-manual-body ol, .admin-manual-body ul { margin: 0 0 0.2rem 1.2rem; }
+.admin-manual-body li { margin-bottom: 0.4rem; }
+.admin-manual-body b { color: var(--ink); }
