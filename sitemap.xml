@@ -54,6 +54,56 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://intimobruna.com/dyqani.html"/>
   </url>
 
+  <!-- Legal pages (SQ / IT / EN) -->
+  <url>
+    <loc>https://intimobruna.com/privatesia.html</loc>
+    <lastmod>2026-07-17</lastmod>
+    <xhtml:link rel="alternate" hreflang="sq" href="https://intimobruna.com/privatesia.html"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://intimobruna.com/privatesia.it.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://intimobruna.com/privatesia.en.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://intimobruna.com/privatesia.html"/>
+  </url>
+  <url>
+    <loc>https://intimobruna.com/privatesia.it.html</loc>
+    <lastmod>2026-07-17</lastmod>
+    <xhtml:link rel="alternate" hreflang="sq" href="https://intimobruna.com/privatesia.html"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://intimobruna.com/privatesia.it.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://intimobruna.com/privatesia.en.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://intimobruna.com/privatesia.html"/>
+  </url>
+  <url>
+    <loc>https://intimobruna.com/privatesia.en.html</loc>
+    <lastmod>2026-07-17</lastmod>
+    <xhtml:link rel="alternate" hreflang="sq" href="https://intimobruna.com/privatesia.html"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://intimobruna.com/privatesia.it.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://intimobruna.com/privatesia.en.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://intimobruna.com/privatesia.html"/>
+  </url>
+  <url>
+    <loc>https://intimobruna.com/kushtet.html</loc>
+    <lastmod>2026-07-17</lastmod>
+    <xhtml:link rel="alternate" hreflang="sq" href="https://intimobruna.com/kushtet.html"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://intimobruna.com/kushtet.it.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://intimobruna.com/kushtet.en.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://intimobruna.com/kushtet.html"/>
+  </url>
+  <url>
+    <loc>https://intimobruna.com/kushtet.it.html</loc>
+    <lastmod>2026-07-17</lastmod>
+    <xhtml:link rel="alternate" hreflang="sq" href="https://intimobruna.com/kushtet.html"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://intimobruna.com/kushtet.it.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://intimobruna.com/kushtet.en.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://intimobruna.com/kushtet.html"/>
+  </url>
+  <url>
+    <loc>https://intimobruna.com/kushtet.en.html</loc>
+    <lastmod>2026-07-17</lastmod>
+    <xhtml:link rel="alternate" hreflang="sq" href="https://intimobruna.com/kushtet.html"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://intimobruna.com/kushtet.it.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://intimobruna.com/kushtet.en.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://intimobruna.com/kushtet.html"/>
+  </url>
+
   <!-- Blog listing (SQ / IT / EN) -->
   <url>
     <loc>https://intimobruna.com/blog/index.html</loc>

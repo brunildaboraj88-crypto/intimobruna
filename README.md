@@ -58,8 +58,8 @@ Copy lives directly in the HTML files, one per language. A few common edits:
 - **Address / map.** The address text reads *Rruga Aleksandër Goga, Durrës 2001, Albania*.
   The map embed and the "Get directions" button both point to the exact map pin
   (coordinates `41.320088,19.445277`). Update those if the location changes.
-- **Instagram / Facebook.** Live in the footer of each homepage and in the `sameAs`
-  arrays of the JSON-LD.
+- **Instagram / Facebook / TikTok.** Live in the footer of every page and in the
+  `sameAs` arrays of the JSON-LD on the homepages.
 - **Colors.** The gold/black/white palette is defined once at the top of
   `styles.css` under `:root` (`--gold`, `--ink`, etc.).
 
@@ -151,30 +151,30 @@ hosting. On a host other than Netlify, replicate the redirect and cache rules fr
 
 ## Shop page + admin page
 
-The shop is a dedicated page — `dyqani.html` (Albanian), with `dyqani.it.html` /
-`dyqani.en.html` alongside — listing individual items for sale (name, price, photo,
+The shop is a dedicated page, `dyqani.html` (Albanian) with `dyqani.it.html` /
+`dyqani.en.html` alongside, listing individual items for sale (name, price, photo,
 and a WhatsApp order button). It is linked from the nav and footer of every page.
 The items live in one shared data file:
 
-- `data/products.json` — the list of items (same items on all three languages;
+- `data/products.json`: the list of items (same items on all three languages;
   names/prices appear exactly as typed). **Ships empty**: items are added only from
-  the admin page — never hardcode names or prices in the repo. While the list is
+  the admin page; never hardcode names or prices in the repo. While the list is
   empty the page shows a "coming soon" note with a WhatsApp button.
-- `shop.js` — loaded by the three shop pages; renders the cards from the JSON.
-- `assets/img/shop/` — photos uploaded from the admin page land here.
+- `shop.js`: loaded by the three shop pages; renders the cards from the JSON.
+- `assets/img/shop/`: photos uploaded from the admin page land here.
 
 ### Managing items: `admin.html`
 
 Open `https://intimobruna.com/admin.html` and log in (the page is noindexed and
 blocked in robots.txt). From there you can **add** an item (name, price, optional
-photo — photos are automatically shrunk in the browser before upload) and **remove**
+photo; photos are automatically shrunk in the browser before upload) and **remove**
 existing ones.
 
 Because the site is static, the admin page publishes changes by committing
 `data/products.json` (and photos) to this GitHub repository through the GitHub API.
 GitHub Pages then redeploys automatically, so changes are live in ~1–2 minutes.
 
-**One-time setup per device — the publish key.** Saving changes requires a GitHub
+**One-time setup per device: the publish key.** Saving changes requires a GitHub
 fine-grained personal access token: github.com → Settings → Developer settings →
 Fine-grained personal access tokens → Generate new token → Repository access: only
 `intimobruna` → Permissions: **Contents – Read and write**. Paste it into the
@@ -182,7 +182,7 @@ Fine-grained personal access tokens → Generate new token → Repository access
 localStorage (never in the repo). Tokens expire (1 year max), so renew it when
 GitHub emails you.
 
-**Security note:** a static site cannot truly hide a password — the admin login is a
+**Security note:** a static site cannot truly hide a password; the admin login is a
 convenience gate (stored as a SHA-256 hash, not plain text). The thing that actually
 prevents strangers from changing the shop is the GitHub token, which only exists on
 the owner's devices. To change the login, hash the new `username:password` pair

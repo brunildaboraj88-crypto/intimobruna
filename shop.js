@@ -1,4 +1,4 @@
-/* IntimoBruna — shop page (dyqani*.html): renders the items for sale from
+/* IntimoBruna - shop page (dyqani*.html): renders the items for sale from
    data/products.json. Items are managed from admin.html, which commits the JSON
    (and photos) to the repo. While the list is empty (or unreachable) the page
    shows the "coming soon" note instead of an empty grid. */

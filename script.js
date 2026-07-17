@@ -1,4 +1,4 @@
-/* IntimoBruna — homepage interactions (WhatsApp links, nav, scroll-reveal, year) */
+/* IntimoBruna - homepage interactions (WhatsApp links, nav, scroll-reveal, year) */
 (function () {
   "use strict";
 

@@ -1,4 +1,4 @@
-/* IntimoBruna — blog pages (Albanian-only): nav toggle, header shadow, year */
+/* IntimoBruna - blog pages (Albanian-only): nav toggle, header shadow, year */
 (function () {
   "use strict";
 

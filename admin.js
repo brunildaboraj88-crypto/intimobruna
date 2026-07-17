@@ -1,4 +1,4 @@
-/* IntimoBruna — admin panel: login, product list, add/remove, publish.
+/* IntimoBruna - admin panel: login, product list, add/remove, publish.
    The site is static (GitHub Pages), so "publishing" means committing data/products.json
    and the product photos to the repo through the GitHub Contents API. The publish key
    (a fine-grained GitHub token) lives only in this browser's localStorage and is never
@@ -198,7 +198,7 @@
     publishProducts(function (list) {
       return list.filter(function (x) { return x.id !== p.id; });
     }, "Shop: remove \"" + p.name + "\"").then(function () {
-      /* best-effort photo cleanup — only files the admin itself uploaded live in PHOTO_DIR */
+      /* best-effort photo cleanup - only files the admin itself uploaded live in PHOTO_DIR */
       if (p.image && p.image.indexOf(PHOTO_DIR) === 0) {
         return getFile(p.image).then(function (f) {
           if (f && f.sha) return deleteFile(p.image, f.sha, "Shop: remove photo for \"" + p.name + "\"");
@@ -311,15 +311,15 @@
   function friendlyError(err) {
     var text = (err && err.message) || "";
     if (text === "photo") {
-      return "Fotoja nuk mund të lexohet — provoni një foto tjetër (JPG ose PNG).";
+      return "Fotoja nuk mund të lexohet. Provoni një foto tjetër (JPG ose PNG).";
     }
     if (text === "badjson") {
-      return "Lista e artikujve në GitHub nuk lexohet dot (skedar i dëmtuar). Asgjë nuk u ndryshua — duhet rregulluar data/products.json në GitHub.";
+      return "Lista e artikujve në GitHub nuk lexohet dot (skedar i dëmtuar). Asgjë nuk u ndryshua. Duhet rregulluar data/products.json në GitHub.";
     }
     var m = /(\d+)/.exec(text);
     var code = m ? m[1] : "";
     if (code === "401" || code === "403") {
-      return "GitHub nuk e pranoi çelësin (gabim " + code + "). Kontrolloni çelësin e publikimit — mund të ketë skaduar.";
+      return "GitHub nuk e pranoi çelësin (gabim " + code + "). Kontrolloni çelësin e publikimit, mund të ketë skaduar.";
     }
     if (code === "409") {
       return "Dikush tjetër sapo bëri një ndryshim. Provoni edhe një herë.";
