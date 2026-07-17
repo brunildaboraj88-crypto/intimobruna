@@ -13,10 +13,16 @@
   var PHOTO_DIR = "assets/img/shop/";
   var FALLBACK_IMG = "assets/img/logo.jpeg";
 
-  /* SHA-256 of "<username lowercased>:<password>". A static page can never truly hide
-     its credentials, so this only keeps them out of the source as plain text; the real
-     write protection is the GitHub token above. */
-  var LOGIN_HASH = "b95a45cab5e1742519875acdf4b002a1bef097f96a24609e1c4ca720dfa3fe85";
+  /* Login check. This file is served publicly (repo visibility is irrelevant), so the
+     credential must not be recoverable from it. We store only a SALTED, slow PBKDF2
+     hash of "<username lowercased>:<password>": with a strong password it cannot be
+     reversed even by someone reading this source. The login is still client-side, so a
+     technical visitor could skip the prompt to view the (empty) dashboard, but cannot
+     publish anything without the GitHub token above, which lives only in the owner's
+     browser and never in the repo. */
+  var SALT = "a2b3577eb8a35c121b16a850412dcf30";
+  var ITERS = 250000;
+  var LOGIN_HASH = "3f32860cf1e07ae9effc285c15fa6aceef205beb54959f3cb0c9409baf100a51";
   var SESSION_KEY = "ib_admin_session";
   var TOKEN_KEY = "ib_publish_key";
 
@@ -36,7 +42,7 @@
     }
     var user = $("loginUser").value.trim().toLowerCase();
     var pass = $("loginPass").value;
-    sha256(user + ":" + pass).then(function (hex) {
+    pbkdf2Hex(user + ":" + pass).then(function (hex) {
       if (hex === LOGIN_HASH) {
         sessionStorage.setItem(SESSION_KEY, "1");
         showAdmin();
@@ -62,13 +68,26 @@
     loadProducts();
   }
 
-  function sha256(str) {
-    return crypto.subtle.digest("SHA-256", new TextEncoder().encode(str)).then(function (buf) {
-      return Array.prototype.map.call(new Uint8Array(buf), function (b) {
-        return ("0" + b.toString(16)).slice(-2);
-      }).join("");
-    });
+  /* PBKDF2-HMAC-SHA256(str, SALT, ITERS) -> 32 bytes as hex. Deliberately slow so the
+     published LOGIN_HASH can't be brute-forced back into the password. */
+  function pbkdf2Hex(str) {
+    var enc = new TextEncoder();
+    return crypto.subtle.importKey("raw", enc.encode(str), { name: "PBKDF2" }, false, ["deriveBits"])
+      .then(function (key) {
+        return crypto.subtle.deriveBits(
+          { name: "PBKDF2", salt: enc.encode(SALT), iterations: ITERS, hash: "SHA-256" }, key, 256);
+      })
+      .then(function (bits) {
+        return Array.prototype.map.call(new Uint8Array(bits), function (b) {
+          return ("0" + b.toString(16)).slice(-2);
+        }).join("");
+      });
   }
+
+  /* Change the login later without revealing it to anyone: open this page, and in the
+     browser console (F12) run:  ibHash("bruna", "your-new-password").then(console.log)
+     Copy the printed value over LOGIN_HASH above and commit. (Or just ask for a change.) */
+  window.ibHash = function (user, pass) { return pbkdf2Hex(String(user).trim().toLowerCase() + ":" + pass); };
 
   /* ---------- product list ---------- */
 
