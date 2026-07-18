@@ -5,6 +5,12 @@
       "name": "Reçipeta push-up",
       "price": "500 lekë",
       "image": "assets/img/shop/p-1784385280966.jpg"
+    },
+    {
+      "id": "p-1784385416762",
+      "name": "Reçipeta pa mbushje",
+      "price": "500 lekë",
+      "image": "assets/img/shop/p-1784385416762.jpg"
     }
   ]
 }
