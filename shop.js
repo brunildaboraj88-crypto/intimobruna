@@ -10,15 +10,15 @@
 
   var STRINGS = {
     sq: {
-      order: "Porosit në WhatsApp",
+      order: "Porosit në WhatsApp", more: "Lexo më shumë", less: "Lexo më pak",
       message: function (p) { return "Përshëndetje IntimoBruna, jam i/e interesuar për \"" + p.name + "\" (" + p.price + ")."; }
     },
     it: {
-      order: "Ordina su WhatsApp",
+      order: "Ordina su WhatsApp", more: "Leggi di più", less: "Leggi meno",
       message: function (p) { return "Salve IntimoBruna, sono interessato/a a \"" + p.name + "\" (" + p.price + ")."; }
     },
     en: {
-      order: "Order on WhatsApp",
+      order: "Order on WhatsApp", more: "Read more", less: "Read less",
       message: function (p) { return "Hello IntimoBruna, I'm interested in \"" + p.name + "\" (" + p.price + ")."; }
     }
   };
@@ -45,9 +45,27 @@
       /* the "coming soon" note is visible by default (works with JS off);
          hide it only once real items are on the page */
       if (grid.children.length && empty) empty.hidden = true;
-      if (grid.children.length) setupSearch();
+      if (grid.children.length) { setupSearch(); setupDescToggles(); }
     })
     .catch(function () { /* note stays visible */ });
+
+  /* Descriptions are clamped to a few lines so cards stay tidy regardless of length.
+     Runs after cards are in the DOM (needs layout): if a description is taller than its
+     clamp, add a "read more" toggle so the full text is still reachable. */
+  function setupDescToggles() {
+    Array.prototype.forEach.call(grid.querySelectorAll(".shop-desc"), function (desc) {
+      if (desc.scrollHeight <= desc.clientHeight + 2) return; // not clamped, no toggle needed
+      var btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "shop-desc-toggle";
+      btn.textContent = t.more;
+      btn.addEventListener("click", function () {
+        var open = desc.classList.toggle("expanded");
+        btn.textContent = open ? t.less : t.more;
+      });
+      desc.parentNode.insertBefore(btn, desc.nextSibling); // between the description and the WhatsApp button
+    });
+  }
 
   /* Client-side search: all cards are already in the DOM, so just show/hide them. */
   function setupSearch() {
