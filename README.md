@@ -64,6 +64,10 @@ Copy lives directly in the HTML files, one per language. A few common edits:
   `sameAs` arrays of the JSON-LD on the homepages.
 - **Colors.** The gold/black/white palette is defined once at the top of
   `styles.css` under `:root` (`--gold`, `--ink`, etc.).
+- **Cache-busting.** Both `styles.css` and the `.js` files are referenced with a
+  `?v=N` query in the HTML (e.g. `shop.js?v=2`, `styles.css?v=9`). **Bump that number
+  whenever you change a CSS or JS file**, otherwise browsers (and Cloudflare) keep
+  serving the old cached copy and your change won't reach visitors.
 
 ## Languages (Albanian / Italian / English)
 
