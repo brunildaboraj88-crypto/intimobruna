@@ -35,7 +35,7 @@
   }
 
   /* ?ts= skips the ~10-minute GitHub Pages cache so freshly published items appear right away */
-  fetch("data/products.json?ts=" + Date.now())
+  fetch("data/products.json?ts=" + Date.now(), { cache: "no-store" })
     .then(function (res) { return res.ok ? res.json() : null; })
     .then(function (data) {
       var products = (data && data.products) || [];

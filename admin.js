@@ -95,7 +95,7 @@
     /* With a publish key stored we read the list straight from GitHub (always current);
        otherwise fall back to the copy the site serves, which can lag a deploy by ~1 min. */
     function fromSite() {
-      return fetch(JSON_PATH + "?ts=" + Date.now())
+      return fetch(JSON_PATH + "?ts=" + Date.now(), { cache: "no-store" })
         .then(function (r) { return r.ok ? r.json() : { products: [] }; });
     }
     var load = getToken()
@@ -169,7 +169,6 @@
 
   var previewUrl = null;
   var editingId = null;        // set while editing an existing item
-  var editingImage = "";       // that item's current image path (for photo cleanup)
 
   $("addPhoto").addEventListener("change", function () {
     var file = this.files[0];
@@ -193,7 +192,6 @@
   /* Load an existing item into the form for editing. */
   function startEdit(p) {
     editingId = p.id;
-    editingImage = p.image || "";
     $("addName").value = p.name || "";
     $("addPrice").value = p.price || "";
     $("addDesc").value = p.description || "";
@@ -218,7 +216,6 @@
     $("addForm").reset();
     clearPreview();
     editingId = null;
-    editingImage = "";
     $("editPhotoHint").hidden = true;
     $("addCardTitle").textContent = "Shto artikull të ri";
     $("addBtn").textContent = "Shto dhe publiko";
@@ -240,7 +237,6 @@
     if (!requireToken($("addMsg"))) return;
 
     var editing = editingId;                       // capture for this submit
-    var prevImage = editingImage;
     var id = editing || ("p-" + Date.now());
     var btn = $("addBtn");
     btn.disabled = true;
@@ -270,14 +266,10 @@
         if (description) prod.description = description;
         list.push(prod);
         return list;
-      }, (editing ? "Shop: edit \"" : "Shop: add \"") + name + "\"").then(function () {
-        /* replaced the photo? best-effort delete the old one if we uploaded it */
-        if (editing && file && prevImage && prevImage.indexOf(PHOTO_DIR) === 0 && prevImage !== newImage) {
-          return getFile(prevImage).then(function (f) {
-            if (f && f.sha) return deleteFile(prevImage, f.sha, "Shop: replace photo for \"" + name + "\"");
-          }).catch(function () {});
-        }
-      });
+      }, (editing ? "Shop: edit \"" : "Shop: add \"") + name + "\"");
+      /* Old photos are deliberately NOT deleted: caches and the ~1-2 min deploy lag mean
+         other devices may still hold a product list that references them; deleting broke
+         images on those devices. Orphaned photos are tiny and harmless. */
     }).then(function () {
       var wasEditing = editing;
       resetForm();
@@ -301,13 +293,7 @@
     publishProducts(function (list) {
       return list.filter(function (x) { return x.id !== p.id; });
     }, "Shop: remove \"" + p.name + "\"").then(function () {
-      /* best-effort photo cleanup - only files the admin itself uploaded live in PHOTO_DIR */
-      if (p.image && p.image.indexOf(PHOTO_DIR) === 0) {
-        return getFile(p.image).then(function (f) {
-          if (f && f.sha) return deleteFile(p.image, f.sha, "Shop: remove photo for \"" + p.name + "\"");
-        }).catch(function () {});
-      }
-    }).then(function () {
+      /* the photo file stays in the repo on purpose; see the note in the submit handler */
       msg($("listMsg"), "U hoq! Ndryshimi duket në faqe për 1–2 minuta.", "ok");
     }).catch(function (err) {
       msg($("listMsg"), friendlyError(err), "err");
@@ -392,15 +378,6 @@
     });
   }
 
-  function deleteFile(path, sha, message) {
-    return fetch(contentsUrl(path), {
-      method: "DELETE",
-      headers: authHeaders(getToken()),
-      body: JSON.stringify({ message: message, sha: sha, branch: BRANCH })
-    }).then(function (r) {
-      if (!r.ok) throw new Error("DELETE " + r.status);
-    });
-  }
 
   /* Always re-read the JSON from the repo right before writing, so two edits in a
      row (or from two devices) never overwrite each other with stale data. */
