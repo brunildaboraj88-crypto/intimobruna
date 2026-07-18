@@ -33,7 +33,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet" />
 
-  <link rel="stylesheet" href="styles.css?v=8" />
+  <link rel="stylesheet" href="styles.css?v=9" />
 
   <script type="application/ld+json">
   {
@@ -114,7 +114,13 @@
           us. See something you like? Order it directly on WhatsApp.</p>
       </div>
 
+      <div class="shop-search" id="shopSearch" hidden>
+        <input type="search" id="shopSearchInput" placeholder="Search for an item..." aria-label="Search for an item" />
+      </div>
+
       <div class="shop-grid"></div>
+
+      <p class="shop-noresults" id="shopNoResults" hidden>No items match your search.</p>
 
       <div class="shop-empty" id="shopEmpty">
         <p>We're filling the online shop with new items. Check back soon, or message us

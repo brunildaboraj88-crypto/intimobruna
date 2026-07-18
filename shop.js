@@ -29,6 +29,11 @@
 
   var t = STRINGS[document.documentElement.lang] || STRINGS.sq;
 
+  /* lowercase + strip diacritics, so "kerko" matches "Kërko" and search is accent-insensitive */
+  function norm(s) {
+    return (s || "").toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "");
+  }
+
   /* ?ts= skips the ~10-minute GitHub Pages cache so freshly published items appear right away */
   fetch("data/products.json?ts=" + Date.now())
     .then(function (res) { return res.ok ? res.json() : null; })
@@ -40,12 +45,33 @@
       /* the "coming soon" note is visible by default (works with JS off);
          hide it only once real items are on the page */
       if (grid.children.length && empty) empty.hidden = true;
+      if (grid.children.length) setupSearch();
     })
     .catch(function () { /* note stays visible */ });
+
+  /* Client-side search: all cards are already in the DOM, so just show/hide them. */
+  function setupSearch() {
+    var box = document.getElementById("shopSearch");
+    var input = document.getElementById("shopSearchInput");
+    var noResults = document.getElementById("shopNoResults");
+    if (!box || !input) return;
+    box.hidden = false;
+    input.addEventListener("input", function () {
+      var q = norm(input.value.trim());
+      var visible = 0;
+      Array.prototype.forEach.call(grid.children, function (card) {
+        var match = !q || (card.dataset.search || "").indexOf(q) !== -1;
+        card.hidden = !match;
+        if (match) visible++;
+      });
+      if (noResults) noResults.hidden = !(q && visible === 0);
+    });
+  }
 
   function buildCard(p) {
     var card = document.createElement("article");
     card.className = "card shop-card";
+    card.dataset.search = norm(p.name + " " + (p.description || "") + " " + (p.price || ""));
 
     var media = document.createElement("div");
     media.className = "card-media";
