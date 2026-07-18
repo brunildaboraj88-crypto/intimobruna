@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css?v=8" />
+  <link rel="stylesheet" href="styles.css?v=9" />
 </head>
 <body class="admin-body">
   <div class="admin-wrap">
@@ -95,6 +95,21 @@
         </details>
 
         <details>
+          <summary>Si të ndryshoni një artikull</summary>
+          <div class="admin-manual-body">
+            <ol>
+              <li>Te lista <b>“Artikujt në shitje”</b> shtypni <b>“Ndrysho”</b> pranë
+                artikullit. Fusha e mbushjes hapet me të dhënat aktuale.</li>
+              <li>Ndryshoni emrin, çmimin ose përshkrimin sipas dëshirës.</li>
+              <li>Për foton: zgjidhni një foto të re vetëm nëse doni ta ndërroni. Nëse e
+                lini bosh, mbahet fotoja aktuale.</li>
+              <li>Shtypni <b>“Ruaj ndryshimet”</b> (ose <b>“Anulo”</b> për të dalë pa ruajtur).
+                Ndryshimi duket në faqe pas 1–2 minutash.</li>
+            </ol>
+          </div>
+        </details>
+
+        <details>
           <summary>Çelësi i publikimit: pse duhet?</summary>
           <div class="admin-manual-body">
             <p>Faqja ruhet në GitHub, dhe GitHub kërkon një <b>çelës</b> për të lejuar ndryshime.
@@ -155,7 +170,7 @@
       </section>
 
       <section class="admin-card">
-        <h2>Shto artikull të ri</h2>
+        <h2 id="addCardTitle">Shto artikull të ri</h2>
         <form id="addForm">
           <div class="admin-field">
             <label for="addName">Emri i artikullit</label>
@@ -172,9 +187,13 @@
           <div class="admin-field">
             <label for="addPhoto">Foto (opsionale)</label>
             <input type="file" id="addPhoto" accept="image/*" />
+            <p class="admin-note" id="editPhotoHint" hidden>Lëreni bosh që të mbani foton aktuale.</p>
             <img class="admin-photo-preview" id="photoPreview" alt="Parapamje e fotos" />
           </div>
-          <button class="btn btn-gold btn-sm" type="submit" id="addBtn">Shto dhe publiko</button>
+          <div class="admin-form-actions">
+            <button class="btn btn-gold btn-sm" type="submit" id="addBtn">Shto dhe publiko</button>
+            <button class="btn btn-dark btn-sm" type="button" id="cancelEditBtn" hidden>Anulo</button>
+          </div>
           <p class="admin-msg" id="addMsg"></p>
         </form>
       </section>

@@ -141,22 +141,35 @@
         info.appendChild(desc);
       }
 
+      var editBtn = document.createElement("button");
+      editBtn.className = "btn btn-sm btn-edit";
+      editBtn.type = "button";
+      editBtn.textContent = "Ndrysho";
+      editBtn.addEventListener("click", function () { startEdit(p); });
+
       var btn = document.createElement("button");
       btn.className = "btn btn-sm btn-remove";
       btn.type = "button";
       btn.textContent = "Hiq";
       btn.addEventListener("click", function () { onRemove(p); });
 
+      var actions = document.createElement("div");
+      actions.className = "admin-item-actions";
+      actions.appendChild(editBtn);
+      actions.appendChild(btn);
+
       li.appendChild(img);
       li.appendChild(info);
-      li.appendChild(btn);
+      li.appendChild(actions);
       list.appendChild(li);
     });
   }
 
-  /* ---------- add ---------- */
+  /* ---------- add / edit ---------- */
 
   var previewUrl = null;
+  var editingId = null;        // set while editing an existing item
+  var editingImage = "";       // that item's current image path (for photo cleanup)
 
   $("addPhoto").addEventListener("change", function () {
     var file = this.files[0];
@@ -172,9 +185,51 @@
   function clearPreview() {
     if (previewUrl) { URL.revokeObjectURL(previewUrl); previewUrl = null; }
     var preview = $("photoPreview");
+    preview.onerror = null;
     preview.classList.remove("show");
     preview.removeAttribute("src");
   }
+
+  /* Load an existing item into the form for editing. */
+  function startEdit(p) {
+    editingId = p.id;
+    editingImage = p.image || "";
+    $("addName").value = p.name || "";
+    $("addPrice").value = p.price || "";
+    $("addDesc").value = p.description || "";
+    clearPreview();
+    if (p.image) {
+      var preview = $("photoPreview");
+      preview.onerror = function () { this.onerror = null; this.src = FALLBACK_IMG; };
+      preview.src = p.image;      // shown as-is; a new file replaces it
+      preview.classList.add("show");
+    }
+    $("editPhotoHint").hidden = false;
+    $("addCardTitle").textContent = "Ndrysho artikullin";
+    $("addBtn").textContent = "Ruaj ndryshimet";
+    $("cancelEditBtn").hidden = false;
+    msg($("addMsg"), "", "");
+    $("addMsg").className = "admin-msg";
+    $("addName").scrollIntoView({ behavior: "smooth", block: "center" });
+  }
+
+  /* Reset the form back to "add" mode. */
+  function resetForm() {
+    $("addForm").reset();
+    clearPreview();
+    editingId = null;
+    editingImage = "";
+    $("editPhotoHint").hidden = true;
+    $("addCardTitle").textContent = "Shto artikull të ri";
+    $("addBtn").textContent = "Shto dhe publiko";
+    $("cancelEditBtn").hidden = true;
+  }
+
+  $("cancelEditBtn").addEventListener("click", function () {
+    resetForm();
+    msg($("addMsg"), "", "");
+    $("addMsg").className = "admin-msg";
+  });
 
   $("addForm").addEventListener("submit", function (e) {
     e.preventDefault();
@@ -184,31 +239,51 @@
     if (!name || !price) return;
     if (!requireToken($("addMsg"))) return;
 
+    var editing = editingId;                       // capture for this submit
+    var prevImage = editingImage;
+    var id = editing || ("p-" + Date.now());
     var btn = $("addBtn");
     btn.disabled = true;
     msg($("addMsg"), "Duke publikuar…", "");
 
-    var id = "p-" + Date.now();
     var file = $("addPhoto").files[0];
-
+    /* A fresh unique filename each upload => the URL changes, so a replaced photo is
+       never shadowed by a cached old one, and the path is always new (plain create). */
     var photoStep = file
       ? compressPhoto(file).then(function (b64) {
-          var path = PHOTO_DIR + id + ".jpg";
+          var path = PHOTO_DIR + id + "-" + Date.now() + ".jpg";
           return putFile(path, b64, "Shop: photo for \"" + name + "\"").then(function () { return path; });
         })
       : Promise.resolve("");
 
-    photoStep.then(function (imagePath) {
+    photoStep.then(function (newImage) {
       return publishProducts(function (list) {
-        var prod = { id: id, name: name, price: price, image: imagePath };
+        if (editing) {
+          return list.map(function (x) {
+            if (x.id !== editing) return x;
+            var u = { id: x.id, name: name, price: price, image: newImage || x.image || "" };
+            if (description) u.description = description;
+            return u;
+          });
+        }
+        var prod = { id: id, name: name, price: price, image: newImage };
         if (description) prod.description = description;
         list.push(prod);
         return list;
-      }, "Shop: add \"" + name + "\"");
+      }, (editing ? "Shop: edit \"" : "Shop: add \"") + name + "\"").then(function () {
+        /* replaced the photo? best-effort delete the old one if we uploaded it */
+        if (editing && file && prevImage && prevImage.indexOf(PHOTO_DIR) === 0 && prevImage !== newImage) {
+          return getFile(prevImage).then(function (f) {
+            if (f && f.sha) return deleteFile(prevImage, f.sha, "Shop: replace photo for \"" + name + "\"");
+          }).catch(function () {});
+        }
+      });
     }).then(function () {
-      $("addForm").reset();
-      clearPreview();
-      msg($("addMsg"), "U publikua! Artikulli duket në faqe për 1–2 minuta.", "ok");
+      var wasEditing = editing;
+      resetForm();
+      msg($("addMsg"), wasEditing
+        ? "U ruajt! Ndryshimi duket në faqe për 1–2 minuta."
+        : "U publikua! Artikulli duket në faqe për 1–2 minuta.", "ok");
     }).catch(function (err) {
       msg($("addMsg"), friendlyError(err), "err");
     }).then(function () {
