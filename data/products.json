@@ -1,3 +1,10 @@
 {
-  "products": []
+  "products": [
+    {
+      "id": "p-1784382006139",
+      "name": "Sytjena bust",
+      "price": "500",
+      "image": "assets/img/shop/p-1784382006139.jpg"
+    }
+  ]
 }
