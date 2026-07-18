@@ -251,10 +251,21 @@
     fetch("https://api.github.com/repos/" + OWNER + "/" + REPO, { headers: authHeaders(t) })
       .then(function (r) {
         if (!r.ok) throw new Error("token " + r.status);
+        return r.json();
+      })
+      .then(function (repo) {
+        /* The key is valid for reading, so store it. But publishing needs write access
+           (Contents: Read and write); repo.permissions.push reflects that. If it's not
+           granted, save anyway but warn clearly, since otherwise the first publish would
+           fail with a 403 that looks like a broken key. */
         localStorage.setItem(TOKEN_KEY, t);
         $("tokenInput").value = "";
         $("tokenInput").placeholder = "•••••• (i ruajtur në këtë pajisje)";
-        msg($("tokenMsg"), "Çelësi punon dhe u ruajt në këtë pajisje.", "ok");
+        if (repo && repo.permissions && repo.permissions.push === true) {
+          msg($("tokenMsg"), "Çelësi punon dhe u ruajt në këtë pajisje.", "ok");
+        } else {
+          msg($("tokenMsg"), "Çelësi u ruajt, por duket se s'ka leje shkrimi. Krijojeni sërish me lejen \"Contents: Read and write\", përndryshe publikimi do të japë gabim.", "err");
+        }
       })
       .catch(function () {
         msg($("tokenMsg"), "Çelësi nuk pranohet nga GitHub. Kontrolloni hapat më sipër dhe provoni sërish.", "err");
@@ -337,8 +348,11 @@
     }
     var m = /(\d+)/.exec(text);
     var code = m ? m[1] : "";
-    if (code === "401" || code === "403") {
-      return "GitHub nuk e pranoi çelësin (gabim " + code + "). Kontrolloni çelësin e publikimit, mund të ketë skaduar.";
+    if (code === "403") {
+      return "Çelësit i mungon leja për të shkruar (gabim 403). Krijojeni sërish me lejen \"Contents: Read and write\" te GitHub.";
+    }
+    if (code === "401") {
+      return "Çelësi nuk u pranua (gabim 401), mund të jetë shkruar gabim ose ka skaduar. Krijoni një të ri.";
     }
     if (code === "409") {
       return "Dikush tjetër sapo bëri një ndryshim. Provoni edhe një herë.";
