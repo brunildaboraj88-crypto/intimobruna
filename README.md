@@ -52,9 +52,11 @@ Copy lives directly in the HTML files, one per language. A few common edits:
 
 - **WhatsApp number.** It's the phone `355692939750` inside every `wa.me/...` link.
   If it changes, find and replace it across **all** HTML files.
-- **Opening hours.** Currently Monday to Saturday, 08:30 to 21:30. They appear in the
-  visible "Visit us" text **and** in the JSON-LD (`openingHoursSpecification`). Change
-  both, in all three homepages.
+- **Opening hours.** Currently every day (Monday to Sunday), 08:00 to 21:00. They appear
+  in several places: the visible "Visit us" text and the FAQ answer **and** their JSON-LD
+  (`openingHoursSpecification` + the `FAQPage` answer, which must match the visible FAQ
+  text) on all three homepages, the "Visit" band on the three `dyqani` pages, and
+  `llms.txt`. Update every one when they change.
 - **Address / map.** The address text reads *Rruga Aleksandër Goga, Durrës 2001, Albania*.
   The map embed and the "Get directions" button both point to the exact map pin
   (coordinates `41.320088,19.445277`). Update those if the location changes.
