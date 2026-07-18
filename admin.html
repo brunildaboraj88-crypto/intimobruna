@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css?v=7" />
+  <link rel="stylesheet" href="styles.css?v=8" />
 </head>
 <body class="admin-body">
   <div class="admin-wrap">
@@ -65,6 +65,8 @@
                 (p.sh. <i>Sytjena push-up</i>).</li>
               <li>Shkruani çmimin ashtu siç doni të duket në faqe
                 (p.sh. <i>1.900 Lekë</i> ose <i>15 €</i>).</li>
+              <li>Nëse doni, shtoni një <b>përshkrim të shkurtër</b> (opsional): material,
+                ngjyra, masa etj. Shfaqet nën çmimin te dyqani.</li>
               <li>Zgjidhni një foto nga galeria (opsionale). Fotoja zvogëlohet vetë,
                 s'ka nevojë ta përgatisni.</li>
               <li>Shtypni <b>“Shto dhe publiko”</b> dhe prisni mesazhin e gjelbër.</li>
@@ -162,6 +164,10 @@
           <div class="admin-field">
             <label for="addPrice">Çmimi</label>
             <input type="text" id="addPrice" required maxlength="30" placeholder="p.sh. 1.900 Lekë" />
+          </div>
+          <div class="admin-field">
+            <label for="addDesc">Përshkrimi (opsional)</label>
+            <textarea id="addDesc" maxlength="300" rows="3" placeholder="p.sh. Dantellë, me tel, ngjyra: e zezë, lëkurë, e bardhë. Masa S–XL."></textarea>
           </div>
           <div class="admin-field">
             <label for="addPhoto">Foto (opsionale)</label>

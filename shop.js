@@ -66,6 +66,15 @@
     price.className = "shop-price";
     price.textContent = p.price || "";
 
+    body.appendChild(name);
+    body.appendChild(price);
+    if (p.description) {
+      var desc = document.createElement("p");
+      desc.className = "shop-desc";
+      desc.textContent = p.description;
+      body.appendChild(desc);
+    }
+
     var btn = document.createElement("a");
     btn.className = "btn btn-gold btn-sm shop-order";
     btn.href = WA_BASE + "?text=" + encodeURIComponent(t.message(p));
@@ -77,8 +86,6 @@
     btn.appendChild(glyph);
     btn.appendChild(document.createTextNode(" " + t.order));
 
-    body.appendChild(name);
-    body.appendChild(price);
     body.appendChild(btn);
     card.appendChild(media);
     card.appendChild(body);

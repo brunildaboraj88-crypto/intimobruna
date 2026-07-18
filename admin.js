@@ -134,6 +134,12 @@
       price.textContent = p.price || "";
       info.appendChild(name);
       info.appendChild(price);
+      if (p.description) {
+        var desc = document.createElement("div");
+        desc.className = "admin-item-desc";
+        desc.textContent = p.description;
+        info.appendChild(desc);
+      }
 
       var btn = document.createElement("button");
       btn.className = "btn btn-sm btn-remove";
@@ -174,6 +180,7 @@
     e.preventDefault();
     var name = $("addName").value.trim();
     var price = $("addPrice").value.trim();
+    var description = $("addDesc").value.trim();
     if (!name || !price) return;
     if (!requireToken($("addMsg"))) return;
 
@@ -193,7 +200,9 @@
 
     photoStep.then(function (imagePath) {
       return publishProducts(function (list) {
-        list.push({ id: id, name: name, price: price, image: imagePath });
+        var prod = { id: id, name: name, price: price, image: imagePath };
+        if (description) prod.description = description;
+        list.push(prod);
         return list;
       }, "Shop: add \"" + name + "\"");
     }).then(function () {
