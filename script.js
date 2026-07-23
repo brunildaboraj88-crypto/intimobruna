@@ -60,22 +60,25 @@
     reveals.forEach(function (el) { io.observe(el); });
   }
 
-  /* Hero video: opt in rather than out. The file is ~4.7 MB, so it is only worth fetching on a
-     wide screen with a connection that is not metered or slow. Everyone else keeps the poster,
-     which is a real product photo and is preloaded in the head. */
+  /* Hero video: plays on phones too, not just desktop. The file is ~4.7 MB, so it is still
+     skipped for anyone who asked for less data (Save-Data / 2G) or less motion; they keep the
+     poster, which is a real product photo and is preloaded in the head. */
   var hero = document.querySelector(".hero-video");
   if (hero && hero.dataset.src) {
     var conn = navigator.connection || {};
     var thrifty = conn.saveData === true || /(^|-)2g$/.test(conn.effectiveType || "");
-    var wide = window.matchMedia("(min-width: 761px)").matches;
 
-    if (wide && !thrifty && !prefersReduced) {
+    if (!thrifty && !prefersReduced) {
       var source = document.createElement("source");
       source.src = hero.dataset.src;
       source.type = "video/mp4";
       hero.appendChild(source);
       hero.classList.add("hero-video--live"); // turns off the CSS poster drift
       hero.load();
+      /* Some mobile browsers ignore the autoplay attribute on a source added after parsing.
+         The video is muted + playsinline, so this is allowed; a blocked promise is harmless. */
+      var playing = hero.play();
+      if (playing && playing.catch) playing.catch(function () {});
     }
   }
 

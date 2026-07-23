@@ -916,6 +916,14 @@ a, button { -webkit-tap-highlight-color: rgba(201, 162, 39, 0.18); }
   align-items: start; /* cards keep their natural height instead of stretching to the tallest in the row */
 }
 .shop-card .card-body { align-items: flex-start; }
+/* Product photos must be shown whole. The generic .card-media crops to a square (object-fit:
+   cover), which cut about a third off the owner's landscape photos. Shop cards only: a 4/3 box
+   (close to the shape most of her photos already have) with `contain`, so nothing is clipped and
+   every card still has the same height. Homepage collection cards keep the square crop. */
+.shop-card .card-media { aspect-ratio: 4 / 3; background: #f7f7f7; }
+.shop-card .card-media img { object-fit: contain; }
+/* the hover zoom would crop the photo again, so shop cards opt out of it */
+@media (hover: hover) { .shop-card:hover .card-media img { transform: none; } }
 .shop-price {
   font-family: var(--serif);
   font-size: 1.1rem;
@@ -1017,7 +1025,8 @@ a, button { -webkit-tap-highlight-color: rgba(201, 162, 39, 0.18); }
   border-top: 1px solid var(--line);
 }
 .admin-item:first-child { border-top: 0; }
-.admin-item img { width: 54px; height: 54px; object-fit: cover; border-radius: 10px; background: #f2f2f2; flex-shrink: 0; }
+/* contain, not cover, so the thumbnail shows the same full photo the customer sees */
+.admin-item img { width: 54px; height: 54px; object-fit: contain; border-radius: 10px; background: #f2f2f2; flex-shrink: 0; }
 .admin-item-info { flex: 1; min-width: 0; }
 .admin-item-name { font-weight: 600; overflow-wrap: anywhere; }
 .admin-item-price { font-size: 0.88rem; color: var(--gold-dark); }
