@@ -1094,3 +1094,36 @@ a, button { -webkit-tap-highlight-color: rgba(201, 162, 39, 0.18); }
   .admin-item img { width: 48px; height: 48px; }
   .admin-manual summary { padding-block: 0.85rem; }  /* bigger tap area on the accordion */
 }
+
+/* =========================================================
+   GENERAL-PAGE OVERRIDES
+   Scoped under body.general, which only the non-shop pages
+   carry (homepages, blog, legal, 404). dyqani*.html and
+   admin.html never get that class, so nothing in this block
+   can change how the shop or the admin render.
+   ========================================================= */
+:root { --gold-ink: #7a5f16; } /* 6.0:1 on white: gold that passes AA as small text */
+.general .eyebrow,
+.general .card-link,
+.general .blog-chip,
+.general .vd-label,
+.general .tldr b,
+.general .index-item i { color: var(--gold-ink); }
+/* the floating bubble was covering buttons and card text on small phones */
+@media (max-width: 560px) {
+  .general .wa-float {
+    width: 48px; height: 48px;
+    right: max(14px, env(safe-area-inset-right));
+    bottom: max(14px, env(safe-area-inset-bottom));
+  }
+  .general .wa-float .wa-glyph-lg { width: 24px; height: 24px; }
+}
+/* on phones the hero logo card was the third brand mark in a row and pushed the
+   order button to the fold; the header wordmark carries the brand there.
+   (.hero-logo exists only on the homepages, so no .general scope is needed.) */
+@media (max-width: 760px) {
+  .hero-logo { display: none; }
+}
+/* footer headings on general pages are h2 (fixes the h2->h4 outline skip) with
+   this class reproducing the exact h4 look */
+.footer-col .footer-h { font-size: 1rem; color: #fff; margin-bottom: 1rem; letter-spacing: 0.02em; }

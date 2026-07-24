@@ -68,6 +68,16 @@ Copy lives directly in the HTML files, one per language. A few common edits:
   `?v=N` query in the HTML (e.g. `shop.js?v=2`, `styles.css?v=9`). **Bump that number
   whenever you change a CSS or JS file**, otherwise browsers (and Cloudflare) keep
   serving the old cached copy and your change won't reach visitors.
+- **Fonts.** Playfair Display and Montserrat are self-hosted from `assets/fonts/`
+  (declared with `@font-face` at the bottom of `styles.css`), so pages no longer wait
+  on fonts.googleapis.com. The shop and admin pages still carry the old Google Fonts
+  link tag; that is intentional (those files are frozen) and harmless: the local
+  `@font-face` rules win and the type renders identically.
+- **Page scoping.** Rules under the `body.general` block at the bottom of `styles.css`
+  apply only to pages carrying `<body class="general">` (homepages, blog, legal, 404).
+  The shop (`dyqani*.html`) and `admin.html` do not have the class, so those rules can
+  never change how they render. Keep it that way: shop and admin are edit-frozen at the
+  owner's request; new site-wide styling goes in the `.general` scope.
 
 ## Languages (Albanian / Italian / English)
 
