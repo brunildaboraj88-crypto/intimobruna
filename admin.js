@@ -134,6 +134,10 @@
       price.textContent = p.price || "";
       info.appendChild(name);
       info.appendChild(price);
+      var cat = document.createElement("div");
+      cat.className = "admin-item-cat";
+      cat.textContent = catLabel(p.category || "recipeta") || "Reçipeta";
+      info.appendChild(cat);
       if (p.description) {
         var desc = document.createElement("div");
         desc.className = "admin-item-desc";
@@ -168,6 +172,28 @@
   /* ---------- add / edit ---------- */
 
   var previewUrl = null;
+  /* Categories: slugs stored in products.json, labels shown to Bruna.
+     Keep the SAME ORDER as shop.js CATS. */
+  var CATEGORIES = [
+    ["recipeta", "Reçipeta"],
+    ["mbathje", "Mbathje"],
+    ["tanga", "Tanga"],
+    ["sete-tyl", "Sete tyl"],
+    ["gjysma-vajza", "Gjysma për vajza"],
+    ["kanatjere-vajza", "Kanatjere vajzash"],
+    ["kanatjere-burra", "Kanatjere burrash"],
+    ["bluze-shkurtra", "Bluze me krahë të shkurtra"],
+    ["bluze-gjata", "Bluze me krahë të gjata"],
+    ["kanatjere-femije", "Kanatjere për fëmijë"],
+    ["bluze-femije-shkurtra", "Bluze fëmijësh me krahë të shkurtra"],
+    ["bluze-femije-gjata", "Bluze fëmijësh me krahë të gjata"],
+    ["bokse", "Bokse meshkuj"]
+  ];
+  function catLabel(slug) {
+    for (var i = 0; i < CATEGORIES.length; i++) if (CATEGORIES[i][0] === slug) return CATEGORIES[i][1];
+    return "";
+  }
+
   var editingId = null;        // set while editing an existing item
 
   $("addPhoto").addEventListener("change", function () {
@@ -195,6 +221,7 @@
     $("addName").value = p.name || "";
     $("addPrice").value = p.price || "";
     $("addDesc").value = p.description || "";
+    if ($("addCat")) $("addCat").value = p.category || "recipeta";
     clearPreview();
     if (p.image) {
       var preview = $("photoPreview");
@@ -233,6 +260,7 @@
     var name = $("addName").value.trim();
     var price = $("addPrice").value.trim();
     var description = $("addDesc").value.trim();
+    var category = ($("addCat") && $("addCat").value) || "recipeta";
     if (!name || !price) return;
     if (!requireToken($("addMsg"))) return;
 
@@ -259,11 +287,13 @@
             if (x.id !== editing) return x;
             var u = { id: x.id, name: name, price: price, image: newImage || x.image || "" };
             if (description) u.description = description;
+            u.category = category;
             return u;
           });
         }
         var prod = { id: id, name: name, price: price, image: newImage };
         if (description) prod.description = description;
+        prod.category = category;
         list.push(prod);
         return list;
       }, (editing ? "Shop: edit \"" : "Shop: add \"") + name + "\"");

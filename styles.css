@@ -999,6 +999,7 @@ a, button { -webkit-tap-highlight-color: rgba(201, 162, 39, 0.18); }
 }
 .admin-field input[type="text"],
 .admin-field input[type="password"],
+.admin-field select,
 .admin-field textarea {
   width: 100%;
   padding: 0.7rem 0.9rem;
@@ -1009,7 +1010,7 @@ a, button { -webkit-tap-highlight-color: rgba(201, 162, 39, 0.18); }
   background: var(--white);
 }
 .admin-field textarea { resize: vertical; min-height: 3.2rem; line-height: 1.5; }
-.admin-field input:focus, .admin-field textarea:focus { outline: 2px solid var(--gold); outline-offset: 1px; }
+.admin-field input:focus, .admin-field select:focus, .admin-field textarea:focus { outline: 2px solid var(--gold); outline-offset: 1px; }
 .admin-note { font-size: 0.88rem; color: var(--ink-soft); margin-bottom: 0.8rem; }
 .admin-steps { font-size: 0.88rem; color: var(--ink-soft); margin: 0 0 1rem 1.2rem; }
 .admin-steps li { margin-bottom: 0.3rem; }
@@ -1127,3 +1128,42 @@ a, button { -webkit-tap-highlight-color: rgba(201, 162, 39, 0.18); }
 /* footer headings on general pages are h2 (fixes the h2->h4 outline skip) with
    this class reproducing the exact h4 look */
 .footer-col .footer-h { font-size: 1rem; color: #fff; margin-bottom: 1rem; letter-spacing: 0.02em; }
+
+/* =========================================================
+   ROUND 18: SHOP CATEGORIES
+   Chip bar on the dyqani pages + the small category tag in
+   the admin item list. One scrollable row on phones (the
+   scroller carries min-width: 0 so long labels can never
+   widen the page), wrapping rows on desktop.
+   ========================================================= */
+.shop-cats {
+  display: flex; gap: 0.5rem; align-items: center;
+  margin: 0 0 clamp(1rem, 3vw, 1.6rem);
+  overflow-x: auto; -webkit-overflow-scrolling: touch;
+  scrollbar-width: none; min-width: 0; padding-bottom: 4px;
+}
+.shop-cats::-webkit-scrollbar { display: none; }
+.shop-cat {
+  flex: 0 0 auto; cursor: pointer;
+  font: inherit; font-size: 0.85rem; font-weight: 600;
+  color: var(--ink-soft); background: var(--white);
+  border: 1px solid var(--line); border-radius: 999px;
+  padding: 0.55rem 1.05rem; min-height: 44px;
+  transition: color 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+}
+.shop-cat.on {
+  color: #1a1406; background: var(--gold-grad);
+  border-color: transparent;
+}
+@media (hover: hover) {
+  .shop-cat:hover { border-color: var(--gold-dark); color: var(--gold-dark); }
+  .shop-cat.on:hover { color: #1a1406; }
+}
+@media (min-width: 761px) {
+  .shop-cats { flex-wrap: wrap; overflow: visible; justify-content: center; }
+}
+.admin-item-cat {
+  font-size: 0.72rem; font-weight: 600; letter-spacing: 0.04em;
+  color: var(--gold-dark); text-transform: uppercase;
+  margin-top: 0.15rem;
+}

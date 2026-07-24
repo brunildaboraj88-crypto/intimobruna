@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css?v=10" />
+  <link rel="stylesheet" href="styles.css?v=13" />
 </head>
 <body class="admin-body">
   <div class="admin-wrap">
@@ -65,6 +65,9 @@
                 (p.sh. <i>Sytjena push-up</i>).</li>
               <li>Shkruani çmimin ashtu siç doni të duket në faqe
                 (p.sh. <i>1.900 Lekë</i> ose <i>15 €</i>).</li>
+              <li>Zgjidhni <b>llojin e artikullit</b> nga lista (Reçipeta, Mbathje,
+                Tanga...). Kështu klientët e gjejnë artikullin te kategoria e vet
+                në dyqan.</li>
               <li>Nëse doni, shtoni një <b>përshkrim të shkurtër</b> (opsional): material,
                 ngjyra, masa etj. Shfaqet nën çmimin te dyqani.</li>
               <li>Zgjidhni një foto nga galeria (opsionale). Fotoja zvogëlohet vetë,
@@ -98,6 +101,8 @@
           <summary>Si të ndryshoni një artikull</summary>
           <div class="admin-manual-body">
             <ol>
+              <li>Mund të ndryshoni edhe <b>llojin e artikullit</b> nga lista,
+                nëse e keni vendosur gabim.</li>
               <li>Te lista <b>“Artikujt në shitje”</b> shtypni <b>“Ndrysho”</b> pranë
                 artikullit. Fusha e mbushjes hapet me të dhënat aktuale.</li>
               <li>Ndryshoni emrin, çmimin ose përshkrimin sipas dëshirës.</li>
@@ -181,6 +186,24 @@
             <input type="text" id="addPrice" required maxlength="30" placeholder="p.sh. 1.900 Lekë" />
           </div>
           <div class="admin-field">
+            <label for="addCat">Lloji i artikullit</label>
+            <select id="addCat">
+              <option value="recipeta">Reçipeta</option>
+              <option value="mbathje">Mbathje</option>
+              <option value="tanga">Tanga</option>
+              <option value="sete-tyl">Sete tyl</option>
+              <option value="gjysma-vajza">Gjysma për vajza</option>
+              <option value="kanatjere-vajza">Kanatjere vajzash</option>
+              <option value="kanatjere-burra">Kanatjere burrash</option>
+              <option value="bluze-shkurtra">Bluze me krahë të shkurtra</option>
+              <option value="bluze-gjata">Bluze me krahë të gjata</option>
+              <option value="kanatjere-femije">Kanatjere për fëmijë</option>
+              <option value="bluze-femije-shkurtra">Bluze fëmijësh me krahë të shkurtra</option>
+              <option value="bluze-femije-gjata">Bluze fëmijësh me krahë të gjata</option>
+              <option value="bokse">Bokse meshkuj</option>
+            </select>
+          </div>
+          <div class="admin-field">
             <label for="addDesc">Përshkrimi (opsional)</label>
             <textarea id="addDesc" maxlength="500" rows="3" placeholder="p.sh. Dantellë, me tel, ngjyra: e zezë, lëkurë, e bardhë. Masa S–XL."></textarea>
           </div>
@@ -222,6 +245,6 @@
     </div>
   </div>
 
-  <script src="admin.js?v=3"></script>
+  <script src="admin.js?v=4"></script>
 </body>
 </html>
