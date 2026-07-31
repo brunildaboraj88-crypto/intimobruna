@@ -33,7 +33,7 @@
   var CATS = [
     ["recipeta",              { sq: "Reçipeta", it: "Reggiseni", en: "Bras" }],
     ["mbathje",               { sq: "Mbathje", it: "Slip", en: "Briefs" }],
-    ["tanga",                 { sq: "Tanga", it: "Tanga", en: "Thongs" }],
+    ["bikini",                { sq: "Bikini", it: "Bikini", en: "Bikini" }],
     ["sete-tyl",              { sq: "Sete tyl", it: "Completi in tulle", en: "Tulle sets" }],
     ["gjysma-vajza",          { sq: "Gjysma për vajza", it: "Gjysma për vajza", en: "Gjysma për vajza" }],
     ["kanatjere-vajza",       { sq: "Kanatjere vajzash", it: "Canottiere ragazza", en: "Girls' tank tops" }],

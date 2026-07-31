@@ -177,7 +177,7 @@
   var CATEGORIES = [
     ["recipeta", "Reçipeta"],
     ["mbathje", "Mbathje"],
-    ["tanga", "Tanga"],
+    ["bikini", "Bikini"],
     ["sete-tyl", "Sete tyl"],
     ["gjysma-vajza", "Gjysma për vajza"],
     ["kanatjere-vajza", "Kanatjere vajzash"],
