@@ -4,18 +4,35 @@
    ========================================================= */
 
 :root {
-  /* Colors */
-  --white: #ffffff;
-  --cream: #faf8f4;
-  --ink: #111111;
-  --ink-soft: #4a4a4a;
-  --black: #0e0e0e;
-  --line: #ececec;
+  /* ── Colours ──
+     Was pure white, near-black ink and a three-stop metallic gold gradient:
+     the palette of a jewellery advert. This shop sells underwear to a whole
+     family in Durrës, and it should feel like the cloth — warm, soft, discreet
+     — not like something behind glass.
 
-  --gold: #c9a227;
-  --gold-dark: #9c7a1e;
-  --gold-light: #e8cc7a;
-  --gold-grad: linear-gradient(135deg, #e8cc7a 0%, #c9a227 45%, #9c7a1e 100%);
+     So the neutrals move off pure white and pure black onto linen and cocoa,
+     and the gold stays (it IS the brand) but antique and flat: a hairline and a
+     small accent, never a gradient with a glow behind it. Nothing here is a new
+     hue invented for its own sake; they are skin, linen, rose and cocoa, which
+     is what the products already are. */
+  --white: #fffdfa;      /* warm white — pure #fff reads clinical beside skin tones */
+  --cream: #f6efe6;      /* linen */
+  --ink: #2c2320;        /* warm near-black, never #111 */
+  --ink-soft: #6a5a52;
+  --black: #1e1714;      /* cocoa, for the dark panels */
+  --line: #e7ddd1;
+
+  --gold: #b08d57;       /* antique, not metallic-yellow */
+  --gold-dark: #8a6d40;
+  --gold-light: #dcc79a;
+  /* Kept as a NAME so the seven call sites keep working, but it is no longer a
+     gradient. The metallic sheen plus the glow shadow was the single most
+     "generic luxury" thing on the page. */
+  --gold-grad: #b08d57;
+
+  --nude: #e9d7c7;
+  --rose: #c08c80;
+  --cocoa: #7a5747;
 
   --wa: #25d366;
 
@@ -102,18 +119,21 @@ h1, h2, h3, h4 { font-family: var(--serif); font-weight: 600; line-height: 1.12;
 
 .section { padding: clamp(3.5rem, 8vw, 6.5rem) 0; }
 .section-title { font-size: clamp(1.9rem, 4.5vw, 3rem); }
-.section-lead { max-width: 46ch; margin: 1rem auto 0; color: var(--ink-soft); }
+.section-lead { max-width: 46ch; margin: 1rem 0 0; color: var(--ink-soft); text-align: left; }
 
-.section-head { text-align: center; max-width: 720px; margin: 0 auto clamp(2rem, 5vw, 3.2rem); }
-/* thin gold hairline under centered section titles only (blog headings unaffected) */
+/* Five centred section heads in a row was the page's own monotony — the About
+   block was already left-aligned and read better for it. */
+.section-head { text-align: left; max-width: 720px; margin: 0 0 clamp(2rem, 5vw, 3.2rem); }
+/* the hairline follows the title: `auto` centred it, which fought the new
+   left alignment */
 .section-head .section-title::after {
   content: "";
   display: block;
   width: 56px;
   height: 2px;
   border-radius: 999px;
-  background: var(--gold-grad);
-  margin: 0.95rem auto 0;
+  background: var(--gold);
+  margin: 0.95rem 0 0;
 }
 
 /* ---------- Buttons ---------- */
@@ -135,22 +155,27 @@ h1, h2, h3, h4 { font-family: var(--serif); font-weight: 600; line-height: 1.12;
 .btn-sm { padding: 0.6rem 1.15rem; font-size: 0.85rem; }
 
 .btn-gold {
-  background: var(--gold-grad);
-  color: #1a1406;
-  box-shadow: 0 12px 26px -14px rgba(201, 162, 39, 0.85);
+  background: var(--gold);
+  color: #fffdfa;
+  box-shadow: none;
 }
 @media (hover: hover) {
-  .btn-gold:hover { transform: translateY(-2px); box-shadow: 0 18px 34px -14px rgba(201, 162, 39, 0.95); }
+  .btn-gold:hover { background: var(--gold-dark); }
 }
 
+/* Was white text on a translucent white fill — invisible the moment the hero
+   stopped being a dark photograph. Ink on linen instead. */
 .btn-ghost {
-  background: rgba(255, 255, 255, 0.06);
-  color: #fff;
-  border-color: rgba(255, 255, 255, 0.55);
-  backdrop-filter: blur(2px);
+  background: transparent;
+  color: var(--ink);
+  border-color: var(--cocoa);
 }
 @media (hover: hover) {
-  .btn-ghost:hover { background: #fff; color: var(--ink); border-color: #fff; transform: translateY(-2px); }
+  .btn-ghost:hover { background: var(--ink); color: var(--cream); border-color: var(--ink); }
+}
+/* Any ghost button still sitting ON a dark panel keeps the old treatment. */
+.section-dark .btn-ghost, .footer .btn-ghost {
+  color: #fff; border-color: rgba(255, 255, 255, 0.55);
 }
 
 .btn-dark {
@@ -271,65 +296,110 @@ a.lang-btn { text-decoration: none; }
 /* =========================================================
    HERO
    ========================================================= */
+/* =========================================================
+   HERO — a linen field, not a dark room
+   Was: a 1.8 MB video of the shop interior shot through glass, buried under a
+   two-layer black scrim, with the logo pasted into the middle as a floating
+   card (it is already in the nav, two centimetres above) and every single
+   element centred — logo, eyebrow, title, quote, paragraph, buttons.
+
+   The shop sells underwear to a family. The room it is sold in is not the
+   product, and a dark scrim is the opposite of warm. So: linen ground, type
+   left where it can be read in one movement, and ONE piece of cloth on the
+   right, cropped past the props.
+   ========================================================= */
 .hero {
   position: relative;
-  min-height: 100svh;
-  display: flex;
-  align-items: center;
+  min-height: auto;
+  display: grid;
   overflow: hidden;
-  color: #fff;
+  color: var(--ink);
+  background: var(--cream);
 }
-.hero-video {
-  position: absolute; inset: 0;
-  width: 100%; height: 100%;
+
+/* The photograph. Cropped hard: every product shot in this library is staged
+   with the same dried fronds, straw hat and a propped catalogue page, and at
+   this size the props read louder than the garment. `object-position` keeps the
+   cloth and pushes the staging out of frame. */
+.hero-photo {
+  width: 100%;
+  height: 100%;
   object-fit: cover;
-  z-index: 0;
+  object-position: 58% 46%;
+  display: block;
 }
-/* While the poster is showing (script.js adds .hero-video--live once the real video
-   plays), drift it slowly so the phone hero feels alive without the 4.7 MB video */
-.hero-video:not(.hero-video--live) { animation: heroDrift 26s ease-in-out infinite alternate; }
-@keyframes heroDrift {
-  from { transform: scale(1); }
-  to { transform: scale(1.07); }
+.hero-media { position: relative; overflow: hidden; min-height: 0; }
+.hero-media::after {
+  content: "";
+  position: absolute; inset: 0;
+  background: linear-gradient(90deg, rgb(var(--cream-rgb, 246 239 230) / 0.55) 0%, transparent 38%);
+  pointer-events: none;
 }
-.hero-overlay {
-  position: absolute; inset: 0; z-index: 1;
-  background:
-    linear-gradient(180deg, rgba(14,14,14,0.55) 0%, rgba(14,14,14,0.35) 45%, rgba(14,14,14,0.78) 100%),
-    radial-gradient(120% 90% at 50% 0%, rgba(0,0,0,0.15), rgba(0,0,0,0.6));
-}
+
 .hero-content {
   position: relative;
   z-index: 2;
-  text-align: center;
-  padding-top: 5rem;
-  padding-bottom: 6rem;
-  margin-inline: auto;
-  max-width: 860px;
-}
-.hero-logo {
-  width: clamp(140px, 30vw, 210px);
-  margin: 0 auto 1.6rem;
-  border-radius: 12px;
-  box-shadow: 0 20px 50px -20px rgba(0, 0, 0, 0.8);
+  text-align: left;
+  padding: clamp(3.5rem, 8vw, 6rem) 0 clamp(3.5rem, 8vw, 6rem);
+  max-width: 38rem;
 }
 .hero-eyebrow {
-  font-size: 0.8rem; letter-spacing: 0.35em; text-transform: uppercase;
-  color: var(--gold-light); font-weight: 600; margin-bottom: 1rem;
+  font-size: 0.72rem; letter-spacing: 0.34em; text-transform: uppercase;
+  color: var(--cocoa); font-weight: 600; margin-bottom: 1.1rem;
 }
-.hero-title { font-size: clamp(2.6rem, 8vw, 5rem); font-weight: 700; letter-spacing: -0.01em; }
+.hero-title {
+  font-size: clamp(2.4rem, 5.4vw, 4rem);
+  font-weight: 700;
+  letter-spacing: -0.015em;
+  line-height: 1.06;
+  color: var(--ink);
+  /* `balance` stops the rag orphaning a word: the old hero broke the line as
+     "Të brendshme për të / gjithë", leaving a gold "të" hanging off line one. */
+  text-wrap: balance;
+}
+.hero-title .gold-text { color: var(--cocoa); }
 .hero-tagline {
   font-family: var(--serif); font-style: italic;
-  font-size: clamp(1.05rem, 2.6vw, 1.4rem);
-  color: var(--gold-light);
-  margin: 1rem 0 0.5rem;
+  font-size: clamp(1rem, 2vw, 1.22rem);
+  color: var(--gold-dark);
+  margin: 1.1rem 0 0;
 }
 .hero-sub {
-  max-width: 40ch; margin: 0.8rem auto 0;
-  color: rgba(255, 255, 255, 0.9);
-  font-weight: 300; font-size: 1.02rem;
+  max-width: 42ch; margin: 1rem 0 0;
+  color: var(--ink-soft);
+  font-weight: 400; font-size: 1rem;
 }
-.hero-cta { display: flex; gap: 0.9rem; justify-content: center; flex-wrap: wrap; margin-top: 2rem; }
+.hero-rule {
+  width: 68px; height: 2px; background: var(--gold);
+  margin: 1.5rem 0 0;
+}
+.hero-cta { display: flex; gap: 0.8rem; justify-content: flex-start; flex-wrap: wrap; margin-top: 2rem; }
+
+@media (min-width: 900px) {
+  .hero {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 0.86fr);
+    align-items: stretch;
+    min-height: 78svh;
+  }
+  .hero-content {
+    grid-column: 1;
+    align-self: center;
+    justify-self: end;
+    padding-inline: var(--pad) clamp(2rem, 4vw, 4rem);
+    padding-left: max(var(--pad), calc((100vw - var(--maxw)) / 2));
+  }
+  .hero-media { grid-column: 2; }
+}
+@media (max-width: 899px) {
+  .hero { grid-template-rows: 40svh auto; }
+  .hero-media { grid-row: 1; }
+  .hero-content {
+    grid-row: 2;
+    max-width: none;
+    padding-inline: var(--pad);
+  }
+  .hero-media::after { background: none; }
+}
 
 /* Scroll cue: a hairline with a small dot sliding down it. The anchor itself is a
    44x64 invisible hit area so it stays tappable. */
@@ -575,7 +645,9 @@ a.lang-btn { text-decoration: none; }
   right: max(20px, env(safe-area-inset-right));
   bottom: max(20px, env(safe-area-inset-bottom));
   width: 58px; height: 58px; border-radius: 50%;
-  background: var(--wa); color: #fff;
+  /* was var(--wa) #25d366 — another brand's green, the loudest thing on a
+     linen page. Cocoa with a gold rim belongs here. */
+  background: var(--black); color: var(--gold-light); border: 1px solid var(--gold);
   display: flex; align-items: center; justify-content: center;
   box-shadow: 0 12px 30px -8px rgba(37, 211, 102, 0.7);
   transition: transform 0.25s ease, box-shadow 0.25s ease;
