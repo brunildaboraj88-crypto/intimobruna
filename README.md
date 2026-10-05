@@ -4,7 +4,8 @@ A trilingual (Albanian / Italian / English) showcase site for **IntimoBruna**, a
 family-run intimates shop in Durrës, Albania. Plain static site (HTML/CSS/JS) with
 no build step and no dependencies. Orders come in over WhatsApp.
 
-18 crawlable pages: 3 homepages, 3 blog listings, and 4 blog posts in 3 languages.
+27 crawlable pages: 3 homepages, 3 shop pages, 6 legal pages, 3 blog listings, and
+4 blog posts in 3 languages.
 
 ## Files
 
@@ -23,9 +24,9 @@ assets/
   img/                Logo + product photos
 404.html              Branded not-found page
 robots.txt            Crawl rules + sitemap pointer
-sitemap.xml           All 18 pages with hreflang alternates
+sitemap.xml           All 27 pages with hreflang alternates
 llms.txt              Summary + link list for AI crawlers
-netlify.toml          Host config (www -> apex redirect, caching, headers)
+_cloudflare/          Cloudflare edge Worker (headers, caching, homepage redirect); never published
 README.md             This file
 ```
 
@@ -36,7 +37,9 @@ which is what the site actually serves.
 
 ## Preview it locally
 
-**Easiest:** double-click `index.html` to open it in your browser.
+**Quick look:** double-click `index.html` to open it in your browser. Links back to the
+Albanian homepage point at the folder (`./`, `../`), the way the live site wants them, so
+clicking around works properly only through a local server:
 
 **Recommended** (matches how it behaves when hosted). From this folder run:
 
@@ -66,8 +69,10 @@ Copy lives directly in the HTML files, one per language. A few common edits:
   `styles.css` under `:root` (`--gold`, `--ink`, etc.).
 - **Cache-busting.** Both `styles.css` and the `.js` files are referenced with a
   `?v=N` query in the HTML (e.g. `shop.js?v=2`, `styles.css?v=9`). **Bump that number
-  whenever you change a CSS or JS file**, otherwise browsers (and Cloudflare) keep
-  serving the old cached copy and your change won't reach visitors.
+  whenever you change a CSS or JS file.** Browsers keep a versioned CSS/JS file for a
+  year (see `_cloudflare/`), so without a new number your change won't reach returning
+  visitors. Images under `assets/` are kept for 30 days: to replace a photo, save the
+  new one under a **new file name** and update the HTML.
 - **Fonts.** Playfair Display and Montserrat are self-hosted from `assets/fonts/`
   (declared with `@font-face` at the bottom of `styles.css`), so pages no longer wait
   on fonts.googleapis.com. The shop and admin pages still carry the old Google Fonts
@@ -128,18 +133,21 @@ holiday gift guide, maternity & nursing.
 The site is tuned for search engines and AI answer engines. Key facts and files:
 
 - **Canonical domain:** `https://intimobruna.com`. All canonical URLs, the sitemap,
-  Open Graph tags and structured data use this exact host. If you set up hosting on
-  `www.`, keep the apex as primary (the included `netlify.toml` 301-redirects www → apex).
+  Open Graph tags and structured data use this exact host; `www.` 301-redirects to it.
+  The Albanian homepage's address is `/`, so link to it as `./` (or `../` from `blog/`),
+  never as `index.html`; the edge Worker 301-redirects `/index.html` to `/` anyway.
   If you use a **different domain**, find-and-replace `intimobruna.com` across the files.
-- **`sitemap.xml`**: all 18 pages with `hreflang` alternates. Re-add an entry whenever
-  you publish a new page.
+- **`sitemap.xml`**: all 27 pages with `hreflang` alternates. Re-add an entry whenever
+  you publish a new page, and move a page's `<lastmod>` only when its content really
+  changes. The shop pages carry none, because their items change daily.
 - **`robots.txt`**: allows crawling and points to the sitemap.
 - **`llms.txt`**: a summary + link list for AI crawlers (ChatGPT, Perplexity, etc.).
-- **`404.html`**: branded not-found page (most hosts serve it automatically).
-- **`netlify.toml`**: host config: www → apex redirect, asset caching, safe headers.
-  Only used on Netlify; on another host replicate the redirect + cache rules there.
-- **Structured data (JSON-LD):** homepages carry `ClothingStore`/`Organization`/`WebSite`
-  + `FAQPage`; blog listings carry `Blog` + `BreadcrumbList`; blog posts carry
+- **`404.html`**: branded not-found page. GitHub Pages serves it at any missing address,
+  however deep, so every link and asset in it is root-absolute (`/styles.css`, `/`).
+- **`_cloudflare/`**: the edge Worker, see "Hosting" below.
+- **Structured data (JSON-LD):** homepages carry `ClothingStore` (the single business
+  entity, which is also the `WebSite` publisher) + `WebSite` + `FAQPage`; blog listings
+  carry `Blog` + `BreadcrumbList`; blog posts carry
   `BlogPosting` + `BreadcrumbList` (+ `HowTo` on the fit guide) + `FAQPage`. If you
   change the **opening hours, address or phone**, update them in the visible text
   **and** the JSON-LD `<script>` blocks (search the files for
@@ -147,23 +155,37 @@ The site is tuned for search engines and AI answer engines. Key facts and files:
 - After it's live, submit the sitemap in **Google Search Console** and make sure the
   Google Business Profile uses the same name/address/phone as the site.
 
-## Publish it online (free)
+## Hosting
 
-The site is a plain static folder, so any static host works. The repo already includes
-a `netlify.toml`, so **Netlify** is the smoothest path:
+**GitHub Pages** serves the site from the `main` branch: every push (including the
+admin page's commits) is live in about a minute. **Cloudflare** runs the DNS for
+`intimobruna.com` and sits in front of GitHub Pages as a proxy.
 
-1. At https://app.netlify.com, choose "Add new site" then "Import an existing project".
-2. Connect GitHub and pick this repository.
-3. Leave the build command empty and set the publish directory to `.` (there is no
-   build step). Netlify picks up `netlify.toml` automatically.
-4. Add `intimobruna.com` as a custom domain and point the DNS at Netlify.
+GitHub Pages cannot send custom HTTP headers, so a small **Cloudflare Worker** in
+`_cloudflare/` adds them at the edge. It does not change how anything is published:
 
-Every push to `main` then redeploys the site automatically.
+- security headers (`Strict-Transport-Security`, `X-Content-Type-Options`,
+  `Referrer-Policy`, `X-Frame-Options`) on every response;
+- long browser caching: a year for versioned CSS/JS (`?v=N`), fonts and shop photos;
+  30 days for other files under `assets/`; HTML and `data/products.json` stay at
+  GitHub's 10 minutes;
+- a 301 from `/index.html` to `/`, and `noindex` on this README.
 
-**No-git alternative:** drag this folder onto https://app.netlify.com/drop for an
-instant URL. Other options: Vercel, Cloudflare Pages, GitHub Pages, or classic FTP
-hosting. On a host other than Netlify, replicate the redirect and cache rules from
-`netlify.toml` yourself.
+The folder starts with `_`, so GitHub Pages never publishes it. To change the Worker,
+edit `_cloudflare/worker.js`, then run wrangler from **inside** that folder while logged
+in to the Cloudflare account that holds the domain:
+
+```bash
+cd _cloudflare
+npx wrangler@4 deploy
+```
+
+To switch it off (GitHub Pages then answers directly again):
+`npx wrangler delete --name intimobruna-edge`.
+
+Settings that live only in the Cloudflare dashboard: AI Crawl Control (AI crawlers are
+allowed, except Bytespider), Crawler Hints, Browser Cache TTL set to "Respect Existing
+Headers" (so the Worker's lifetimes are kept), and the Worker route's "fail open" mode.
 
 ## Shop page + admin page
 

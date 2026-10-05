@@ -5,6 +5,9 @@
 /LogoIntimoBruna.jpeg
 /WhatsApp Image *.jpeg
 
+# Wrangler's local state (it caches the Cloudflare account here). Never commit it.
+.wrangler/
+
 # OS / editor cruft
 Thumbs.db
 desktop.ini

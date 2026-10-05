@@ -5,10 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <script>document.documentElement.classList.add("js");</script>
   <title>IntimoBruna | Lingerie &amp; Underwear Shop in Durrës</title>
-  <meta name="description" content="IntimoBruna is a family-run intimates shop in central Durrës, Albania. Bras, lingerie, men's underwear, swimwear and nightwear for the whole family. Message us on WhatsApp." />
+  <meta name="description" content="Family-run intimates shop in central Durrës, Albania: bras, lingerie, men's underwear, swimwear and nightwear for the whole family. Message us on WhatsApp." />
   <meta name="robots" content="index, follow, max-image-preview:large" />
   <meta name="theme-color" content="#0E0E0E" />
-  <link rel="preload" as="image" href="assets/img/bras-pushup.jpeg" />
 
   <link rel="canonical" href="https://intimobruna.com/index.en.html" />
   <link rel="alternate" hreflang="sq" href="https://intimobruna.com/" />
@@ -58,8 +57,11 @@
         "description": "Family-run intimates, lingerie and swimwear shop in central Durrës. Bras, underwear for women and men, nightwear and swimwear for the whole family.",
         "url": "https://intimobruna.com/",
         "telephone": "+355 69 293 9750",
-        "image": "https://intimobruna.com/assets/img/logo.jpeg",
-        "logo": "https://intimobruna.com/assets/img/logo.jpeg",
+        "image": [
+          "https://intimobruna.com/assets/img/og-home.jpg",
+          "https://intimobruna.com/assets/img/logo.jpeg"
+        ],
+        "logo": { "@type": "ImageObject", "url": "https://intimobruna.com/assets/img/logo.jpeg", "width": 640, "height": 640 },
         "priceRange": "€€",
         "foundingDate": "2022-04",
         "founder": { "@type": "Person", "name": "Brunila Boraj" },
@@ -91,24 +93,12 @@
         "inLanguage": "en"
       },
       {
-        "@type": "Organization",
-        "@id": "https://intimobruna.com/#org",
-        "name": "IntimoBruna",
-        "url": "https://intimobruna.com/",
-        "logo": { "@type": "ImageObject", "url": "https://intimobruna.com/assets/img/logo.jpeg" },
-        "sameAs": [
-          "https://www.instagram.com/intimobruna/",
-          "https://www.facebook.com/p/Bruna-intimo-100063503833618/",
-          "https://www.tiktok.com/@intimobruna"
-        ]
-      },
-      {
         "@type": "WebSite",
         "@id": "https://intimobruna.com/#website",
         "url": "https://intimobruna.com/",
         "name": "IntimoBruna",
         "inLanguage": "en",
-        "publisher": { "@id": "https://intimobruna.com/#org" }
+        "publisher": { "@id": "https://intimobruna.com/#store" }
       }
     ]
   }
@@ -137,7 +127,7 @@
       </nav>
 
       <div class="lang-switch" role="group" aria-label="Language">
-        <a class="lang-btn" href="index.html" hreflang="sq" data-lang="sq">SQ</a>
+        <a class="lang-btn" href="./" hreflang="sq" data-lang="sq">SQ</a>
         <a class="lang-btn" href="index.it.html" hreflang="it" data-lang="it">IT</a>
         <a class="lang-btn" href="index.en.html" aria-current="page" hreflang="en" data-lang="en">EN</a>
       </div>
@@ -423,7 +413,7 @@
   <footer class="site-footer">
     <div class="container footer-grid">
       <div class="footer-brand">
-        <img src="assets/img/logo.jpeg" alt="IntimoBruna logo" class="footer-logo" />
+        <img src="assets/img/logo.jpeg" alt="IntimoBruna logo" class="footer-logo" width="640" height="640" loading="lazy" decoding="async" />
         <p class="footer-tagline">Intimo per tutti. Intimates for everyone.</p>
       </div>
 

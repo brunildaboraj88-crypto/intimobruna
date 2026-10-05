@@ -1,6 +1,6 @@
 # IntimoBruna
 
-> Family-run intimate apparel shop in the centre of Durrës, Albania. Bras, lingerie, men's underwear, swimwear and nightwear for the whole family. Order via WhatsApp or visit the shop in person. Site available in Albanian, Italian and English.
+> Family-run intimate apparel shop in the centre of Durrës (Italian: Durazzo), Albania. Bras, lingerie, men's underwear, swimwear and nightwear for the whole family. Order via WhatsApp or visit the shop in person. Site available in Albanian, Italian and English.
 
 - Address: Rruga Aleksandër Goga, Durrës 2001, Albania
 - Opening hours: every day (Monday to Sunday), 08:00-21:00
@@ -13,8 +13,12 @@
 - [Home (Albanian)](https://intimobruna.com/): shop overview, collections, gallery, location, FAQ
 - [Home (Italian)](https://intimobruna.com/index.it.html)
 - [Home (English)](https://intimobruna.com/index.en.html)
-- [Shop / Dyqani](https://intimobruna.com/dyqani.html): the items currently for sale, ordered via WhatsApp (Italian and English versions alongside)
+- [Shop / Dyqani](https://intimobruna.com/dyqani.html): the items currently for sale, ordered via WhatsApp
+- [Shop (Italian)](https://intimobruna.com/dyqani.it.html)
+- [Shop (English)](https://intimobruna.com/dyqani.en.html)
 - [Blog](https://intimobruna.com/blog/index.html): practical guides on fit, swimwear, everyday basics and gifts
+- [Blog (Italian)](https://intimobruna.com/blog/index.it.html)
+- [Blog (English)](https://intimobruna.com/blog/index.en.html)
 
 ## Blog articles (English versions)
 - [How to measure your bra size at home](https://intimobruna.com/blog/si-te-matni-madhesine-e-sytjenave.en.html)

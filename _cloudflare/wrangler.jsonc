@@ -1,0 +1,16 @@
+// Edge layer for intimobruna.com (see worker.js). Run wrangler from THIS folder:
+//   npx wrangler@4 deploy
+// No account id is stored here: wrangler takes it from the logged-in account, or from
+// CLOUDFLARE_ACCOUNT_ID set in the shell when a login can see more than one account.
+{
+  "name": "intimobruna-edge",
+  "main": "worker.js",
+  "compatibility_date": "2026-09-01",
+  "routes": [
+    { "pattern": "intimobruna.com/*", "zone_name": "intimobruna.com" }
+  ],
+  // Without these, the Worker would also answer on a *.workers.dev address, where fetching
+  // its own URL would loop instead of reaching GitHub Pages.
+  "workers_dev": false,
+  "preview_urls": false
+}
