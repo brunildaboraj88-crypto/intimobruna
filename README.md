@@ -183,9 +183,9 @@ npx wrangler@4 deploy
 To switch it off (GitHub Pages then answers directly again):
 `npx wrangler delete --name intimobruna-edge`.
 
-Settings that live only in the Cloudflare dashboard: AI Crawl Control (AI crawlers are
-allowed, except Bytespider), Crawler Hints, Browser Cache TTL set to "Respect Existing
-Headers" (so the Worker's lifetimes are kept), and the Worker route's "fail open" mode.
+Settings that live only in the Cloudflare dashboard, not in this repo: AI Crawl Control
+(AI crawlers allowed, except Bytespider), Crawler Hints on, and "fail open" on the
+Worker route, so the site still loads if the Worker's free daily limit is ever reached.
 
 ## Shop page + admin page
 
