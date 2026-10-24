@@ -1,8 +1,27 @@
 /* =========================================================
    SELF-HOSTED FONTS
-   Same three latin woff2 files Google was serving; declared
-   here so pages that drop the Google tag keep the same type.
-   Pages still loading Google's CSS render identically.
+   Playfair Display is the same latin woff2 Google was serving.
+   The body sans is NOT: Montserrat was replaced by Schibsted
+   Grotesk on 2026-10-24.
+
+   Why, with the evidence. Montserrat is a GEOMETRIC sans, with
+   circular bowls and wide caps. The lingerie brands that art
+   direct properly do not use one: Intimissimi, the direct
+   Italian competitor, sets PP Editorial New against PP Radio
+   GROTESK, and Fleur du Mal runs Suisse Int'l, a grotesque,
+   alone across its weights. A display serif over a geometric
+   sans is the pairing a template ships, not the one the
+   category uses.
+
+   Playfair stays. Casa Cook uses it and Intimissimi uses an
+   editorial serif in the same role; it was the pairing that
+   was wrong, not the serif.
+
+   Schibsted Grotesk is OFL, variable, and subset here to the
+   227 codepoints these pages actually use. Its weight axis is
+   400-900 where Montserrat declared 300-600; the stylesheet
+   asks for 400, 500, 600 and 700, all inside the new range.
+   Licence beside the binary at assets/fonts/OFL-SchibstedGrotesk.txt.
    ========================================================= */
 @font-face {
   font-family: "Playfair Display";
@@ -21,10 +40,10 @@
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 @font-face {
-  font-family: "Montserrat";
+  font-family: "Schibsted Grotesk";
   font-style: normal;
-  font-weight: 300 600;
+  font-weight: 400 900;
   font-display: swap;
-  src: url("assets/fonts/montserrat-latin.woff2") format("woff2");
+  src: url("assets/fonts/schibsted-grotesk-latin.woff2") format("woff2");
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
