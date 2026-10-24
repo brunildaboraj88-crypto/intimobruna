@@ -737,7 +737,12 @@ a.lang-btn { text-decoration: none; }
   .footer-brand { grid-column: 1 / -1; }
 }
 
-@media (max-width: 760px) {
+/* The desktop nav needs about 997px: links, the WhatsApp button and the three
+   language buttons on one row. It used to hand over to the hamburger only at
+   760px, so between 780 and 980 the full nav was shown and did not fit, and
+   .lang-switch ran 94px past the right edge. Measured every 20px: the page
+   scrolled sideways at every width from 780 to 980 and nowhere else. */
+@media (max-width: 999px) {
   .nav-toggle { display: flex; }
   /* nav-links is off-canvas here, so push the language switch + hamburger to the right */
   .lang-switch { margin-left: auto; }
@@ -761,7 +766,10 @@ a.lang-btn { text-decoration: none; }
   .nav-links > a:not(.btn) { padding: 0.9rem 0.2rem; border-bottom: 1px solid var(--line); }
   .nav-links > a:not(.btn)::after { display: none; }
   .nav-links .btn { margin-top: 1rem; justify-content: center; }
+}
 
+@media (max-width: 760px) {
+  /* not a nav rule: left where it was when the nav moved to 999px */
   .gallery-grid { columns: 2 150px; }
 }
 
